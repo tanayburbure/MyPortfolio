@@ -3,5 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/MyPortfolio/', // Update the base URL if needed
+  base: '/MyPortfolio/', // Set the base to match your repository name
 });
+npm install gh-pages --save-dev
