@@ -1,0 +1,24 @@
+import React from 'react';
+
+function Home() {
+  return (
+    <div className='relative flex items-center justify-center h-[100vh]'>
+      <div className='absolute w-full h-screen overflow-hidden'>
+        <img src="./images/duck.avif" alt="" />
+      </div>
+      
+      <h3 className='absolute top-12'>T A N A Y  B U R B U R E</h3>
+      <h1 className='absolute text-center  text-[16vh] font-medium leading-[6.5vw]'>
+        MAKING <br />
+        <span className='text-[#EB5939]'>
+        GOOD   <br />
+        SHIT   <br />
+        </span>
+        SINCE  <br />
+        2023  
+      </h1>
+    </div>
+  )
+}
+
+export default Home;

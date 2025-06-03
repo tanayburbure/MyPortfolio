@@ -1,0 +1,160 @@
+import React, { useState, useEffect } from 'react';
+
+// Constants for configuration
+const LOADING_DURATION = 600; // Total loading duration in milliseconds
+const HIDE_DELAY = 200; // Delay before hiding the percentage
+const BUTTON_DELAY = 300; // Delay before showing the button
+const CIRCLE_RADIUS = 30; // Radius of the SVG circle
+const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // Dynamic calculation of circumference
+
+function Loader() {
+  const [percentage, setPercentage] = useState(0);
+  const [hideTimer, setHideTimer] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const intervalDuration = LOADING_DURATION / 100; // Interval duration for smooth progress
+    const interval = setInterval(() => {
+      setPercentage((prev) => {
+        if (prev < 100) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => {
+            setHideTimer(true);
+            setTimeout(() => setShowButton(true), BUTTON_DELAY);
+          }, HIDE_DELAY);
+          return 100;
+        }
+      });
+    }, intervalDuration);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={styles.container}>
+      {/* Inline styles for the animations */}
+      <style>
+        {`
+          @keyframes drawCircle {
+            0% {
+              stroke-dashoffset: ${CIRCLE_CIRCUMFERENCE};
+            }
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+
+          @keyframes disappearCircle {
+            0% {
+              stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: -${CIRCLE_CIRCUMFERENCE};
+            }
+          }
+
+          .circle {
+            animation: drawCircle ${LOADING_DURATION / 1000}s linear forwards,
+                       disappearCircle 0.3s linear ${LOADING_DURATION / 1000}s forwards;
+            transform: rotate(-90deg);
+            transform-origin: center;
+          }
+
+          .moveUp {
+            animation: moveUp 0.5s ease-in-out forwards;
+          }
+
+          @keyframes moveUp {
+            from {
+              transform: translateY(0);
+            }
+            to {
+              transform: translateY(-30px);
+            }
+          }
+
+          .fadeIn {
+            animation: fadeIn 0.5s ease-in-out forwards;
+          }
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(25px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
+
+      {/* Percentage Display */}
+      {!hideTimer && (
+        <div className='timer absolute top-[36vh] text-[1.8vh] text-white pr-[4px]' style={styles.percentage}>
+          {percentage}%
+        </div>
+      )}
+
+      {/* SVG Circle */}
+      <svg style={styles.svg} viewBox="0 0 64 64">
+        <circle
+          className="circle"
+          style={styles.circle}
+          cx="32"
+          cy="32"
+          r={CIRCLE_RADIUS}
+          fill="none"
+          stroke="#b7ab98"
+          strokeWidth="0.4"
+          strokeDasharray={CIRCLE_CIRCUMFERENCE}
+          strokeDashoffset={CIRCLE_CIRCUMFERENCE}
+        />
+      </svg>
+
+      {/* Logo and Button */}
+      <img
+        className={`h-16 absolute ${hideTimer ? 'moveUp' : ''}`}
+        src={`${import.meta.env.BASE_URL}images/logo.gif`}
+        alt="Animated Logo"
+        onError={(e) => { e.target.src = 'fallback-image.png'; }} // Fallback for image load error
+      />
+      <button
+        className={`border-[1px] ${showButton ? 'block fadeIn' : 'hidden'} hover:bg-[#AA9E8B] hover:text-[#0D0D0D] text-[2vh] absolute top-[55.5vh] px-12 py-[8px] pb-2 rounded-full border-[#b7ab98] text-[#b7ab98] transition-all duration-500 ease-in-out`}
+        aria-label="Start"
+      >
+        S T A R T
+      </button>
+    </div>
+  );
+}
+
+// Inline styles for the component
+const styles = {
+  container: {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  svg: {
+    width: '16vw',
+    height: '16vw',
+  },
+  circle: {
+    transformOrigin: 'center',
+  },
+  percentage: {
+    position: 'absolute',
+    top: '36vh',
+    fontSize: '1.8vh',
+    color: 'white',
+    paddingRight: '4px',
+  },
+};
+
+export default Loader;

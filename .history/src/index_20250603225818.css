@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color: #0D0D0D;
+    color: #B7AB98;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.word-reveal.revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  .word-reveal.revealed > span:last-child {
+    transform: translateY(0) !important;
+  }
+  
