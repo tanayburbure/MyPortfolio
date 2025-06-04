@@ -3,6 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/MyPortfolio/', // Set the base to match your repository name
+  base: '/', // ← this is correct for Vercel root deployment
 });
-npm install gh-pages --save-dev
