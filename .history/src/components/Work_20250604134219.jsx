@@ -113,3 +113,4 @@ function Descriptions({ projects, selectedProject }) {
     );
 }
 
+// absolute top-0 left-[14.8vw] text-[#b7ab98] p-2 font-medium text-[8vw] leading-[6.5vw]

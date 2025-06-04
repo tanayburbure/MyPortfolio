@@ -48,7 +48,7 @@ export default function Work() {
 
 function Titles({ projects, setSelectedProject }) {
     return (
-        <div className="w-full border-t border-[#b7ab9820]">
+        <div className="relative w-full border-t border-[#b7ab9820]">
             {projects.map((project, index) => (
                 <Title key={index} project={project} index={index} setSelectedProject={setSelectedProject} />
             ))}
@@ -69,13 +69,12 @@ function Title({ project, index, setSelectedProject }) {
     return (
         <div className="relative">
             <div
-                className="cursor-pointer border-b border-[#b7ab9820]"
+                className="cursor-pointer border-b border-[#b7ab9820] relative" // <- Fix applied here
                 ref={containerRef}
                 onMouseEnter={() => setSelectedProject(index)}
                 onMouseLeave={() => setSelectedProject(null)}
             >
                 <div className="inline-block pl-[15%] relative">
-                    {/* Dark text (base layer) */}
                     <p className="text-[#2F2D29] pb-[1vh] mt-[-1vh] font-medium text-[8.2vw] leading-[6.5vw]">
                         {project.title}
                     </p>
@@ -91,6 +90,7 @@ function Title({ project, index, setSelectedProject }) {
         </div>
     );
 }
+
 
 function Descriptions({ projects, selectedProject }) {
     return (
@@ -112,4 +112,3 @@ function Descriptions({ projects, selectedProject }) {
         </div>
     );
 }
-

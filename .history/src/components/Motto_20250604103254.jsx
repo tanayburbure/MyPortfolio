@@ -29,13 +29,11 @@ function Motto() {
   return (
     <div className='h-[100vh] relative overflow-hidden'>
       <img
-  ref={imageRef}
-  className="h-[100vh] w-[100vw] object-cover absolute top-0 left-0 -z-10"
-  src={`${import.meta.env.BASE_URL}/images/Exp.jpg`}
-  alt="Experience"
-  loading="eager"
-  fetchpriority="high"
-/>
+        ref={imageRef}
+        className='h-[100vh] w-[100vw] object-cover absolute top-0 left-0 -z-10'
+        src="/images/logo.svg"
+        alt="Experience"
+      />
       <div className='top-[28%] left-0 right-0 absolute flex flex-col items-center text-center px-4'>
         <h5 className='text-sm mb-4'>M Y &nbsp; M O T T O</h5>
         <h2 className='text-[18vh] w-[60%] font-semibold tracking-tighter leading-[7vw]'>

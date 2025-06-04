@@ -6,7 +6,7 @@ import { SplitText } from 'gsap/SplitText';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-function About() {
+function Experience() {
   const textRef = useRef(null);
 
   useEffect(() => {
@@ -31,10 +31,12 @@ function About() {
             start: 'top center',
             end: 'bottom center',
             scrub: 1,
+            // markers: true, // enable if debugging
           }
         });
       });
 
+      // Special animation for the span
       const spanElement = element.querySelector('span');
       const spanSplit = new SplitText(spanElement, { type: 'lines', linesClass: 'span-line' });
       
@@ -62,15 +64,15 @@ function About() {
   }, []);
 
   return (
-    <div className='h-screen pl-[31vh] pb-4 flex flex-col justify-center'>
-      <h5 className='text-sm font-semibold mb-6'>A B O U T &nbsp; M E</h5>
+    <div className='pl-[31vh] h-[55vh] mb-36 flex  flex-col justify-center '>
+      <h5 className='text-sm font-semibold mb-6'>E X P E R I E N C E</h5>
       <div ref={textRef}>
         <h2 className='text-[9vh] tracking-tighter w-[77%] font-semibold leading-[4.5vw] text-transparent bg-gradient-to-r from-[#212121] to-[#B7AB98] bg-[length:200%_100%] bg-right bg-clip-text [-webkit-background-clip:text]'>
-          I'm a <span className='text-[#EB5939]'>visually skilled</span> interactive web designer and developer with a strong focus on crafting high-quality, impactful digital experiences.
+          Over <span className='text-[#EB5939]'>two years</span> of Experience in interactive design and working with some of the most talented people in the business.
         </h2>
       </div>
 
-      <style>{`
+      <style jsx global>{`
         .line {
           display: block;
           background: linear-gradient(to right, #B7AB98 50%, #212121 50%);
@@ -86,4 +88,4 @@ function About() {
   );
 }
 
-export default About;
+export default Experience;

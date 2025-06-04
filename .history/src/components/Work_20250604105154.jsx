@@ -69,7 +69,7 @@ function Title({ project, index, setSelectedProject }) {
     return (
         <div className="relative">
             <div
-                className="cursor-pointer border-b border-[#b7ab9820]"
+                className="relative cursor-pointer border-b border-[#b7ab9820]"
                 ref={containerRef}
                 onMouseEnter={() => setSelectedProject(index)}
                 onMouseLeave={() => setSelectedProject(null)}
@@ -112,4 +112,3 @@ function Descriptions({ projects, selectedProject }) {
         </div>
     );
 }
-
