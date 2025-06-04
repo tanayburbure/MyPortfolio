@@ -32,7 +32,7 @@ const VideoComponent = () => {
                 muted
                 playsInline
             >
-                <source src="./components/reel.mp4" type="video/mp4" />
+                <source src="./video/reel.mp4" type="video/mp4" />
                 Your browser doesn't support videos
             </video>
         </div>

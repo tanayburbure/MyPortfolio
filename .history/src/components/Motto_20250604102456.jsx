@@ -31,7 +31,7 @@ function Motto() {
       <img
         ref={imageRef}
         className='h-[100vh] w-[100vw] object-cover absolute top-0 left-0 -z-10'
-        src="./images/Exp.jpg"
+        src="./components/Exp.jpg"
         alt="Experience"
       />
       <div className='top-[28%] left-0 right-0 absolute flex flex-col items-center text-center px-4'>
