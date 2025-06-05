@@ -1,0 +1,39 @@
+import React from 'react'
+
+function Footer() {
+    return (
+        <div className="h-[60vh] flex flex-col w-full pl-[32vh] pt-[15vh]">
+            <h3 className="text-lg tracking-widest mb-16 ml-2">C O N N E C T</h3>
+            <div className="grid grid-cols-3 ">
+                <ul className="text-[4vh]">
+                    <li className="flex items-center">
+                        <span className="text-red-500 mr-2">▸</span> Instagram
+                    </li>
+                    <li className="flex items-center">
+                        <span className="text-red-500 mr-2">▸</span> Facebook
+                    </li>
+                </ul>
+                <ul className="text-[4vh]">
+                    <li className="flex items-center">
+                        <span className="text-red-500 mr-2">▸</span> Telegram
+                    </li>
+                    <li className="flex items-center">
+                        <span className="text-red-500 mr-2">▸</span> Linkedin
+                    </li>
+                </ul>
+                <ul className='pt-3'>
+                    <li className='pb-2'>
+                        <h2  className='text-[2.5vh]'>Email</h2>
+                        <h3  className='text-[2vh]'>tanayburbure@gmail.com</h3>
+                    </li>
+                    <li>
+                        <h2  className='text-[2.5vh]'>Phone</h2>
+                        <h3  className='text-[2vh]'>+91 8421881858</h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+export default Footer
