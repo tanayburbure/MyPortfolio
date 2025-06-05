@@ -29,9 +29,8 @@ function Experience() {
     <div
       className="bg-fixed w-full bg-center bg-cover min-h-[110vh] relative"
       style={{
-        backgroundImage: "url('/images/new.jpg')",
-        opacity: 0.7,
-        backgroundPositionY: `calc(200% + ${offsetY}px)`
+        backgroundImage: "url('/images/Exp.jpg')",
+        backgroundPositionY: `calc(50% + ${offsetY}px)`
       }}
     >
       {/* Overlay */}

@@ -7,12 +7,12 @@ function Home() {
   <img
     src="./images/satoru.jpg"
     alt=""
-    className="w-full h-full object-cover opacity-25"
+    className="w-full h-full object-cover"
   />
 </div>
 
       
-      <h3 className='absolute top-44 tracking-tight text-lg font-bold'>T A N A Y &nbsp;&nbsp; B U R B U R E</h3>
+      <h3 className='absolute top-44 tracking-tight text-md font-bold text-[#EB5939]'>T A N A Y &nbsp;&nbsp; B U R B U R E</h3>
 
       <h1 className='absolute top-[30%] text-center text-[16vh] font-bold leading-[6.4vw] tracking-tighter'>
         STILL <br />

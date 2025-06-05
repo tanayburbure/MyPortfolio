@@ -30,7 +30,7 @@ function Experience() {
       className="bg-fixed w-full bg-center bg-cover min-h-[110vh] relative"
       style={{
         backgroundImage: "url('/images/new.jpg')",
-        opacity: 0.7,
+        filter: "brightness(0.6)", // 1 is normal, <1 is darker, >1 is brighter
         backgroundPositionY: `calc(200% + ${offsetY}px)`
       }}
     >

@@ -27,10 +27,9 @@ function Experience() {
 
   return (
     <div
-      className="bg-fixed w-full bg-center bg-cover min-h-[110vh] relative"
+      className="bg-fixed w-full bg-center bg-cover min-h-[110vh] relative opcity-[20%]"
       style={{
         backgroundImage: "url('/images/new.jpg')",
-        opacity: 0.7,
         backgroundPositionY: `calc(200% + ${offsetY}px)`
       }}
     >

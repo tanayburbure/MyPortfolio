@@ -7,7 +7,7 @@ function Home() {
   <img
     src="./images/satoru.jpg"
     alt=""
-    className="w-full h-full object-cover opacity-25"
+    className="w-full h-full object-cover opacity-10"
   />
 </div>
 
