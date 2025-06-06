@@ -29,7 +29,7 @@ function Home() {
       style={{
         backgroundImage: "url('./images/satoru.jpg')",
         opacity: 0.8,
-        backgroundPositionY: `calc(80% + ${offsetY}px)`
+        backgroundPositionY: `calc(110% + ${offsetY}px)`
       }}
     >
       {/* Overlay */}
