@@ -31,7 +31,7 @@ function Experience() {
       style={{
         backgroundImage: "url('/images/satoru.jpg')",
         opacity: 0.7,
-        backgroundPositionY: `calc(120% + ${offsetY}px)`
+        backgroundPositionY: `calc(200% + ${offsetY}px)`
       }}
     >
       {/* Overlay */}

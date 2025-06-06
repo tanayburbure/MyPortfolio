@@ -30,7 +30,7 @@ function Home() {
         className="absolute inset-0 bg-fixed bg-center bg-no-repeat bg-cover z-0"
         style={{
           backgroundImage: "url('./images/new.jpg')",
-          backgroundPositionY: `calc(110% + ${offsetY}px)`,
+          backgroundPositionY: `calc(50% + ${offsetY}px)`,
           opacity: 0.4,
         }}
       />
@@ -39,16 +39,19 @@ function Home() {
       {/* <div className="absolute inset-0 bg-black opacity-30 z-0" /> */}
 
       {/* Content Layer */}
-      <div className="relative z-10 h-full absolute top-[28%]">
-          <h3 className="tracking-tight text-lg font-bold text-center mb-20 mr-6">
+      <div className="relative z-10 h-full">
+        <div className="absolute top-[21%] left-[30%]">
+          <h3 className="tracking-tight text-lg font-bold text-center mb-8 mr-4">
             T A N A Y &nbsp;&nbsp; B U R B U R E
           </h3>
 
           <h1 className="text-center text-[16vh] font-bold leading-[6.4vw] tracking-tighter">
-            STILL&nbsp;
+            STILL <br />
             <span className="text-[#EB5939]">DEBUGGING <br /></span>
+            SINCE <br />
+            2023
           </h1>
-          <h3 className='text-center text-[7vh] font-semibold'>SINCE 2023</h3>
+        </div>
       </div>
     </div>
   );

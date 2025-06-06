@@ -46,7 +46,7 @@ function Home() {
 
           <h1 className="text-center text-[16vh] font-bold leading-[6.4vw] tracking-tighter">
             STILL&nbsp;
-            <span className="text-[#EB5939]">DEBUGGING <br /></span>
+            <span className="text-[#E83F25]">DEBUGGING <br /></span>
           </h1>
           <h3 className='text-center text-[7vh] font-semibold'>SINCE 2023</h3>
       </div>

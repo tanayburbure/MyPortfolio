@@ -40,7 +40,7 @@ function Home() {
 
       {/* Content Layer */}
       <div className="relative z-10 h-full absolute top-[28%]">
-          <h3 className="tracking-tight text-lg font-bold text-center mb-20 mr-6">
+          <h3 className="tracking-tight text-lg font-bold text-center mb-52 mr-6">
             T A N A Y &nbsp;&nbsp; B U R B U R E
           </h3>
 

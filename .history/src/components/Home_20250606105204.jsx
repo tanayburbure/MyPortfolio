@@ -40,7 +40,7 @@ function Home() {
 
       {/* Content Layer */}
       <div className="relative z-10 h-full absolute top-[28%]">
-          <h3 className="tracking-tight text-lg font-bold text-center mb-20 mr-6">
+          <h3 className="tracking-tight text-lg font-bold text-center mb-40 mr-6">
             T A N A Y &nbsp;&nbsp; B U R B U R E
           </h3>
 
@@ -48,7 +48,6 @@ function Home() {
             STILL&nbsp;
             <span className="text-[#EB5939]">DEBUGGING <br /></span>
           </h1>
-          <h3 className='text-center text-[7vh] font-semibold'>SINCE 2023</h3>
       </div>
     </div>
   );

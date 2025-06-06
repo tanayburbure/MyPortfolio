@@ -39,8 +39,8 @@ function Home() {
       {/* <div className="absolute inset-0 bg-black opacity-30 z-0" /> */}
 
       {/* Content Layer */}
-      <div className="relative z-10 h-full absolute top-[28%]">
-          <h3 className="tracking-tight text-lg font-bold text-center mb-20 mr-6">
+      <div className="relative z-10 h-full absolute top-[22%]">
+          <h3 className="tracking-tight text-lg font-bold text-center mb-52 mr-6">
             T A N A Y &nbsp;&nbsp; B U R B U R E
           </h3>
 
