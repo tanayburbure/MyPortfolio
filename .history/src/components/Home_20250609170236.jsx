@@ -24,7 +24,7 @@ function Home() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.01 : 0.03;
+        const parallaxFactor = isMobile ? 0.01 : 0.05;
         setOffsetY(window.scrollY * parallaxFactor);
         animationFrameId = null;
       });
