@@ -23,9 +23,10 @@ function Home() {
       if (animationFrameId) return;
 
       animationFrameId = requestAnimationFrame(() => {
-        // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.01 : 0.03;
-        setOffsetY(window.scrollY * parallaxFactor);
+        // Reduce parallax intensity on mobile and add minimum offset
+        const parallaxFactor = isMobile ? 0.01 : 0.05;
+        const minOffset = isMobile ? -20 : 0; // Prevent negative offset on mobile
+        setOffsetY(Math.max(window.scrollY * parallaxFactor, minOffset));
         animationFrameId = null;
       });
     };
@@ -40,14 +41,16 @@ function Home() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image with mobile-safe parallax */}
       <div
-        className="absolute inset-0 bg-fixed bg-bottom bg-no-repeat z-0"
+        className="absolute inset-0 bg-fixed bg-center bg-no-repeat bg-cover z-0"
         style={{
           backgroundImage: "url('./images/new.jpg')",
           backgroundPositionY: `calc(110% + ${offsetY}px)`,
           opacity: 0.4,
           backgroundSize: 'cover',
+          // Ensure background covers entire viewport on mobile
+          ...(isMobile && { backgroundAttachment: 'scroll' })
         }}
       />
 

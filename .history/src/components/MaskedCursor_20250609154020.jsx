@@ -8,7 +8,7 @@ const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
+    const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
@@ -24,26 +24,12 @@ const useIsLargeScreen = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const mediaQuery = window.matchMedia('(min-width: 768px)');
     setIsLargeScreen(mediaQuery.matches);
 
-    const handler = (e) => setIsLargeScreen(e.matches);
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handler);
-    } else {
-      // For Safari and older browsers
-      mediaQuery.addListener(handler);
-    }
-
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handler);
-      } else {
-        mediaQuery.removeListener(handler);
-      }
-    };
+    const handler = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
   return isLargeScreen;
@@ -57,12 +43,9 @@ export default function MaskedCursor() {
   const [cursorSize, setCursorSize] = useState(40);
 
   useEffect(() => {
-    const handleMouseOver = (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLElement)) return;
-
-      const noMaskTarget = target.closest('.no-mask');
-      const expandTarget = target.closest('.cursor-expand');
+    const handleMouseOver = (e: MouseEvent) => {
+      const noMaskTarget = (e.target as HTMLElement)?.closest('.no-mask');
+      const expandTarget = (e.target as HTMLElement)?.closest('.cursor-expand');
 
       setIsMasked(!noMaskTarget);
 
@@ -77,7 +60,7 @@ export default function MaskedCursor() {
     return () => window.removeEventListener('mouseover', handleMouseOver);
   }, []);
 
-  // Disable cursor on small screens
+  // ❌ Don't render anything on small screens
   if (!isLargeScreen) return null;
 
   return (

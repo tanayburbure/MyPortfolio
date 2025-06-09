@@ -10,7 +10,6 @@ function Navigation() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
 
   const scrollTargets = {
     About: isLargeScreen ? 0 : 176,
@@ -35,10 +34,7 @@ function Navigation() {
   }, [isMusicPlaying]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1024);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -74,7 +70,6 @@ function Navigation() {
     smoothScroll(target);
   };
 
-  // Track active section
   useEffect(() => {
     const onScroll = () => {
       const scrollY = window.scrollY;
@@ -98,25 +93,26 @@ function Navigation() {
   }, [isLargeScreen]);
 
   return (
-    <div className='relative z-50 fixed h-full w-screen'>
+    <div className='relative z-50 fixed h-full w-screen overflow-x-hidden'>
       <audio ref={audioRef} src="/music/lovestory.mp3" loop />
 
-      <div className='left absolute top-6 left-6 md:top-12 md:left-12'>
+      {/* Logo */}
+      <div className='absolute top-12 left-12'>
         <MagneticWrapper>
           <img
-            className='w-8 md:w-12'
+            className='w-12'
             src={`${import.meta.env.BASE_URL}images/logo.svg`}
             alt="Logo"
           />
         </MagneticWrapper>
       </div>
 
-      <div className='absolute top-6 right-6 md:top-12 md:right-16 flex flex-col items-end font-[font9] text-base md:text-lg tracking-tight'>
+      {/* Navigation Links */}
+      <div className='absolute top-12 right-6 md:right-16 flex flex-col items-end font-[font9] text-sm md:text-lg tracking-tight space-y-2'>
         {["About", "Work", "Contact"].map((item) => (
           <button
             key={item}
-            className={`nav-button no-mask transition-colors duration-300 ${activeSection === item ? "text-[#EB5939] font-semibold" : "text-[#958C7D] font-normal"
-              }`}
+            className={`nav-button no-mask transition-colors duration-300 ${activeSection === item ? "text-[#EB5939] font-semibold" : "text-[#958C7D] font-normal"}`}
             onClick={() => handleScroll(item)}
           >
             {item}
@@ -124,32 +120,16 @@ function Navigation() {
         ))}
       </div>
 
-      {!isMobile && (
-        <div className="social text-[2.5vh] text-[#EB5939] z-50 absolute top-[70vh] gap-8 left-[7.5vh] flex flex-col">
-          <MagneticWrapper>
-            <a href="https://www.facebook.com/tanay.burbure/" target="_blank" rel="noopener noreferrer">
-              <IoLogoFacebook />
-            </a>
-          </MagneticWrapper>
-          <MagneticWrapper>
-            <a href="https://www.instagram.com/tanay_burbure/" target="_blank" rel="noopener noreferrer">
-              <AiFillInstagram />
-            </a>
-          </MagneticWrapper>
-          <MagneticWrapper>
-            <a href="https://t.me/Tanayburbure" target="_blank" rel="noopener noreferrer">
-              <FaTelegramPlane />
-            </a>
-          </MagneticWrapper>
-          <MagneticWrapper>
-            <a href="https://www.linkedin.com/in/tanay-burbure-80401a271/" target="_blank" rel="noopener noreferrer">
-              <IoLogoLinkedin />
-            </a>
-          </MagneticWrapper>
-        </div>
-      )}
+      {/* Social Links - hidden on small screens */}
+      <div className="hidden md:flex text-[2.5vh] text-[#EB5939] z-50 absolute top-[70vh] gap-6 left-[4vw] flex-col">
+        <MagneticWrapper><a href="https://www.facebook.com/tanay.burbure/" target="_blank" rel="noopener noreferrer"><IoLogoFacebook /></a></MagneticWrapper>
+        <MagneticWrapper><a href="https://www.instagram.com/tanay_burbure/" target="_blank" rel="noopener noreferrer"><AiFillInstagram /></a></MagneticWrapper>
+        <MagneticWrapper><a href="https://t.me/Tanayburbure" target="_blank" rel="noopener noreferrer"><FaTelegramPlane /></a></MagneticWrapper>
+        <MagneticWrapper><a href="https://www.linkedin.com/in/tanay-burbure-80401a271/" target="_blank" rel="noopener noreferrer"><IoLogoLinkedin /></a></MagneticWrapper>
+      </div>
 
-      <div className='absolute top-[88vh] right-4 md:right-8 text-[2vh] md:text-[2.5vh] font-[font9]'>
+      {/* Music Toggle Button */}
+      <div className='absolute top-[84vh] right-6 md:right-16 text-[2.5vh] font-[font9]'>
         <button
           className="no-mask"
           onClick={toggleMusic}

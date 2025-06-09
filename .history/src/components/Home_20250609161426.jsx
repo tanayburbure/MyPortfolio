@@ -24,8 +24,9 @@ function Home() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.01 : 0.03;
-        setOffsetY(window.scrollY * parallaxFactor);
+        const parallaxFactor = isMobile ? 0.03 : 0.05;
+        setOffsetY(Math.min(window.scrollY * parallaxFactor, 80)); // adjust 60 as needed
+
         animationFrameId = null;
       });
     };
@@ -42,12 +43,12 @@ function Home() {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-fixed bg-bottom bg-no-repeat z-0"
+        className="absolute inset-0 bg-fixed bg-center bg-no-repeat bg-cover z-0"
         style={{
           backgroundImage: "url('./images/new.jpg')",
           backgroundPositionY: `calc(110% + ${offsetY}px)`,
           opacity: 0.4,
-          backgroundSize: 'cover',
+          backgroundSize: 'cover'
         }}
       />
 

@@ -24,7 +24,7 @@ function Home() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.01 : 0.03;
+        const parallaxFactor = isMobile ? 0.02 : 0.05;
         setOffsetY(window.scrollY * parallaxFactor);
         animationFrameId = null;
       });
@@ -42,12 +42,12 @@ function Home() {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-fixed bg-bottom bg-no-repeat z-0"
+        className="absolute inset-0 bg-fixed bg-center bg-no-repeat bg-cover z-0"
         style={{
           backgroundImage: "url('./images/new.jpg')",
           backgroundPositionY: `calc(110% + ${offsetY}px)`,
           opacity: 0.4,
-          backgroundSize: 'cover',
+          backgroundSize: 'cover'
         }}
       />
 
@@ -65,7 +65,7 @@ function Home() {
         </h1>
 
         {/* Subtitle */}
-        <h3 className="font-[font9] font-semibold tracking-tight mt-2 text-[3.5vh] sm:text-[4.5vh] md:text-[5.5vh]">
+        <h3 className="font-[font9] font-semibold tracking-tight mt-2 text-[3vh] sm:text-[4.5vh] md:text-[5.5vh]">
           SINCE 2023
         </h3>
       </div>

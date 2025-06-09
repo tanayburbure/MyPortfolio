@@ -24,7 +24,7 @@ function Home() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.01 : 0.03;
+        const parallaxFactor = isMobile ? 0.03 : 0.05;
         setOffsetY(window.scrollY * parallaxFactor);
         animationFrameId = null;
       });
@@ -42,14 +42,18 @@ function Home() {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-fixed bg-bottom bg-no-repeat z-0"
-        style={{
-          backgroundImage: "url('./images/new.jpg')",
-          backgroundPositionY: `calc(110% + ${offsetY}px)`,
-          opacity: 0.4,
-          backgroundSize: 'cover',
-        }}
-      />
+  className="absolute inset-0 bg-fixed bg-center bg-no-repeat bg-cover z-0"
+  style={{
+    backgroundImage: "url('./images/new.jpg')",
+    backgroundPositionY: `${110 + offsetY}px`, // simpler and avoids calc rendering bugs
+    backgroundSize: '110% auto', // slightly zoomed in to ensure no gap on any screen
+    opacity: 0.4,
+    willChange: 'background-position',
+    transform: 'translateZ(0)', // GPU-accelerated rendering
+    backfaceVisibility: 'hidden' // fix for some mobile Safari bugs
+  }}
+/>
+
 
       {/* Main Content - Responsive text sizes maintained */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center lg:px-4 pr-1 text-center">

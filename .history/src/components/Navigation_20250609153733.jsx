@@ -149,7 +149,7 @@ function Navigation() {
         </div>
       )}
 
-      <div className='absolute top-[88vh] right-4 md:right-8 text-[2vh] md:text-[2.5vh] font-[font9]'>
+      <div className='absolute top-[84vh] sm:top-[100vh] right-4 md:right-16 text-[2vh] md:text-[2.5vh] font-[font9]'>
         <button
           className="no-mask"
           onClick={toggleMusic}
