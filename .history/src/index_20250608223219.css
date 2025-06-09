@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color: #0D0D0D;
+    color: #B7AB98;
+    -webkit-user-select: none;
+    user-select: none;}
+    
+    
+@font-face {
+    font-family: 'font1';
+    src: url('/fonts/Ague.otf') format('opentype');
+}@font-face {
+    font-family: 'font2';
+    src: url('/Fonts/Bonceitrial.otf') format('opentype');
+}@font-face {
+    font-family: 'font3';
+    src: url('/Fonts/Eclassio.otf') format('opentype');
+}@font-face {
+    font-family: 'font4';
+    src: url('/Fonts/Fontspring.otf') format('opentype');
+}@font-face {
+    font-family: 'font5';
+    src: url('/Fonts/GesturaDisplay.otf') format('opentype');
+}@font-face {
+    font-family: 'font6';
+    src: url('/Fonts/Gromife.otf') format('opentype');
+}@font-face {
+    font-family: 'font7';
+    src: url('/Fonts/rafgins.otf') format('opentype');
+}@font-face {
+    font-family: 'font8';
+    src: url('/Fonts/Quicking.otf') format('opentype');
+}@font-face {
+    font-family: 'font9';
+    src: url('/Fonts/Aeternum.ttf') format('truetype');
+}@font-face {
+    font-family: 'font10';
+    src: url('/Fonts/hookan.ttf') format('truetype');
+}@font-face {
+    font-family: 'font11';
+    src: url('/Fonts/Nt-Ginder.ttf') format('truetype');
+}

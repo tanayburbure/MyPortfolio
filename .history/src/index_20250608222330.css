@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color: #0D0D0D;
+    color: #B7AB98;
+    -webkit-user-select: none;
+    user-select: none;
+}
+@font-face {
+    font-family: 'font1';
+    src: url('/Fonts/Agussans.otf') format('opentype');
+}
+@font-face {
+    font-family: 'font4';
+    src: url('/Fonts/Helvetica.ttf') format('truetype');
+}
