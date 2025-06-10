@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Allow Lenis to manage this */
+  background-color: #0D0D0D;
+  color: #B7AB98;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
+/* Universal box-sizing and max width */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Media elements: responsive sizing */
+img,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Optional utility wrapper class */
+.responsive-wrapper {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1280px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: hidden; /* Still allow Lenis to handle scroll */
+    padding: 0;
+    margin: 0;
+  }
+
+  .responsive-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+    
+@font-face {
+    font-family: 'font1';
+    src: url('/fonts/Ague.otf') format('opentype');
+}@font-face {
+    font-family: 'font2';
+    src: url('/fonts/Bonceitrial.otf') format('opentype');
+}@font-face {
+    font-family: 'font3';
+    src: url('/fonts/Eclassio.otf') format('opentype');
+}@font-face {
+    font-family: 'font4';
+    src: url('/fonts/Fontspring.otf') format('opentype');
+}@font-face {
+    font-family: 'font5';
+    src: url('/fonts/GesturaDisplay.otf') format('opentype');
+}@font-face {
+    font-family: 'font6';
+    src: url('/fonts/Gromife.otf') format('opentype');
+}@font-face {
+    font-family: 'font7';
+    src: url('/fonts/rafgins.otf') format('opentype');
+}@font-face {
+    font-family: 'font8';
+    src: url('/fonts/Quicking.otf') format('opentype');
+}@font-face {
+    font-family: 'font9';
+    src: url('/fonts/Aeternum.ttf') format('truetype');
+}@font-face {
+    font-family: 'font10';
+    src: url('/fonts/hookan.ttf') format('truetype');
+}@font-face {
+    font-family: 'font11';
+    src: url('/fonts/Nt-Ginder.ttf') format('truetype');
+}@font-face {
+    font-family: 'font12';
+    src: url('/fonts/Helvetica.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'font13';
+    src: url('/fonts/tanay.otf') format('opentype');
+}@font-face {
+    font-family: 'font14';
+    src: url('/fonts/minh.otf') format('opentype');
+}
