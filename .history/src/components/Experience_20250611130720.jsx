@@ -3,14 +3,14 @@ import AnimatedText from '../components/AnimatedText';
 
 function Experience() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Initialize with current width
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     
-    // No need to call checkMobile() here since we initialized with the correct value
+    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -23,7 +23,7 @@ function Experience() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.001 : 0.05;
+        const parallaxFactor = isMobile ? 0.001 : 0.05; // Kept your original 0.05 value for desktop
         setOffsetY(window.scrollY * parallaxFactor);
         animationFrameId = null;
       });
@@ -47,8 +47,8 @@ function Experience() {
           backgroundRepeat: "no-repeat",
           opacity: 0.6,
           backgroundPositionY: `calc(100% + ${offsetY}px)`,
-          backgroundPositionX: isMobile ? '73%' : undefined,
-          backgroundSize: isMobile ? '370%' : 'cover',
+          backgroundPositionX: window.innerWidth < 640 ? '73%' : undefined,
+          backgroundSize: window.innerWidth < 640 ? '370%' : 'cover',
         }}
       />
       
@@ -58,7 +58,7 @@ function Experience() {
           E X P E R I E N C E
         </h5>
 
-        <AnimatedText className="text-[5vh] sm:text-[6.5vh] md:text-[8vh] lg:text-[8.5vh] font-[font9] cursor-expand mb-12 sm:mb-16 md:mb-20 tracking-tight w-[95%] font-semibold leading-[9.5vw] sm:leading-[5vw] md:leading-[4.5vw] lg:leading-[3.9vw]">
+        <AnimatedText className="text-[5vh] sm:text-[6.5vh] md:text-[8vh] lg:text-[8.5vh] font-[font9] cursor-expand mb-12 sm:mb-16 md:mb-20 tracking-tight w-[95%] font-semibold leading-[11vw] sm:leading-[5vw] md:leading-[4.5vw] lg:leading-[3.9vw]">
           Over
           <span className="text-[#EB5939] font-[font8] tracking-wide sm:tracking-wider"> two years</span> of Experience in interactive design and working with some of the most talented people in the business.
         </AnimatedText>

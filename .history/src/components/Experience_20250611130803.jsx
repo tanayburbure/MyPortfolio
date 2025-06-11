@@ -3,14 +3,14 @@ import AnimatedText from '../components/AnimatedText';
 
 function Experience() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Initialize with current width
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     
-    // No need to call checkMobile() here since we initialized with the correct value
+    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -23,7 +23,7 @@ function Experience() {
 
       animationFrameId = requestAnimationFrame(() => {
         // Reduce parallax intensity on mobile
-        const parallaxFactor = isMobile ? 0.001 : 0.05;
+        const parallaxFactor = isMobile ? 0.001 : 0.05; // Kept your original 0.05 value for desktop
         setOffsetY(window.scrollY * parallaxFactor);
         animationFrameId = null;
       });
@@ -47,8 +47,8 @@ function Experience() {
           backgroundRepeat: "no-repeat",
           opacity: 0.6,
           backgroundPositionY: `calc(100% + ${offsetY}px)`,
-          backgroundPositionX: isMobile ? '73%' : undefined,
-          backgroundSize: isMobile ? '370%' : 'cover',
+          backgroundPositionX: window.innerWidth < 640 ? '73%' : undefined,
+          backgroundSize: window.innerWidth < 640 ? '370%' : 'cover',
         }}
       />
       

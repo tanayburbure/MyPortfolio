@@ -199,7 +199,7 @@ function Descriptions({ projects, selectedProject, isMobile }) {
                             {project.title.substring(0, isMobile ? 6 : 8)}
                         </p>
                     )}
-                    <p className="w-full pt-[1.6vh] sm:w-[45%] md:w-[42%] lg:w-[40%] text-[2.5vw] sm:text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] font-bold font-[font9] text-center sm:text-left">
+                    <p className="w-full pt-[3vh] sm:w-[45%] md:w-[42%] lg:w-[40%] text-[2.5vw] sm:text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] font-bold font-[font9] text-center sm:text-left">
                         {project.description}
                     </p>
                 </div>

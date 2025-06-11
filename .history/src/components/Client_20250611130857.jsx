@@ -34,13 +34,13 @@ const Client = () => {
       {/* Content Above Earth (z-10) */}
       <div className="relative z-10 pt-32 lg:pt-56 px-4 lg:pl-[32vh] flex flex-col justify-center">
         <h5 className="mb-4 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">C L I E N T S</h5>
-        <AnimatedText className="text-4xl font-[font9] lg:text-[9vh] cursor-expand mb-12 lg:mb-20 tracking-tight w-full lg:w-[80%] font-semibold leading-[9.5vw] lg:leading-[4.1vw]">
+        <AnimatedText className="text-4xl lg:text-[9vh] cursor-expand mb-12 lg:mb-20 tracking-tight w-full lg:w-[80%] font-semibold leading-[9.5vw] lg:leading-[4.1vw]">
           I worked with some of the most <span className="text-[#EB5939] tracking-wide">innovative</span> industry leaders.
         </AnimatedText>
       </div>
 
       {/* Showcase (z-10 to stay on top) */}
-      <div className="relative z-10 top-[22vh] lg:top-[17vh] px-4 lg:px-0">
+      <div className="relative z-10 top-[19vh] lg:top-[17vh] px-4 lg:px-0">
         <ProjectShowcase projects={projects} />
       </div>
     </div>

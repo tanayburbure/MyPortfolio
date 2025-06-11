@@ -40,7 +40,7 @@ const Client = () => {
       </div>
 
       {/* Showcase (z-10 to stay on top) */}
-      <div className="relative z-10 top-[22vh] lg:top-[17vh] px-4 lg:px-0">
+      <div className="relative z-10 top-[19vh] lg:top-[17vh] px-4 lg:px-0">
         <ProjectShowcase projects={projects} />
       </div>
     </div>
