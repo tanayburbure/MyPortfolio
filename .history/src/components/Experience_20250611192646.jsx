@@ -70,7 +70,7 @@ function Experience() {
           E X P E R I E N C E
         </h5>
 
-        <AnimatedText className="text-[5vh] sm:text-[6.5vh] md:text-[8vh] lg:text-[8.5vh] font-[font9] cursor-expand mb-12 sm:mb-16 md:mb-20 lg:mb-28 tracking-tight w-[95%] font-semibold leading-[10vw] sm:leading-[5vw] md:leading-[4.5vw] lg:leading-[4.25vw]">
+        <AnimatedText className="text-[5vh] sm:text-[6.5vh] md:text-[8vh] lg:text-[8.5vh] font-[font9] cursor-expand mb-12 sm:mb-16 md:mb-20 lg:mb-28 tracking-tight w-[95%] font-semibold leading-[4.7vh] sm:leading-[5vw] md:leading-[4.5vw] lg:leading-[4.25vw]">
           Over
           <span className="text-[#EB5939] font-[font8] tracking-wide sm:tracking-wider"> two years</span> of Experience in interactive design and working with some of the most talented people in the business.
         </AnimatedText>
