@@ -69,11 +69,11 @@ function Experience() {
         <h5 className="mb-8 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">E X P E R I E N C E</h5>
 
         <AnimatedText
-  className="text-[clamp(5vh,5vw,8.5vh)] 
+  className="text-[clamp(3vh,5vw,8.5vh)] 
              font-[font9] 
              tracking-tight 
              sm:tracking-normal 
-             w-[98%] 
+             w-[95%] 
              sm:w-[85%] 
              md:w-[80%] 
              lg:w-[80%] 

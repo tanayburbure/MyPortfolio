@@ -9,11 +9,11 @@ function About() {
       </h5>
 
       <AnimatedText
-  className="text-[clamp(5vh,5vw,8.5vh)] 
+  className="text-[clamp(3vh,5vw,8.5vh)] 
              font-[font9] 
              tracking-tight 
              sm:tracking-normal 
-             w-[98%] 
+             w-[95%] 
              sm:w-[85%] 
              md:w-[80%] 
              lg:w-[80%] 

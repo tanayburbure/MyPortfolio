@@ -44,7 +44,7 @@ const Client = () => {
              w-[98%]
              lg:w-[80%] 
              font-semibold 
-             leading-[clamp(9.5vw,8vw,4.1vw)] 
+             leading-[clamp(5vw,8vw,4.1vw)] 
              break-words 
              hyphens-auto"
 >

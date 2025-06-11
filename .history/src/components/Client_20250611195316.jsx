@@ -35,16 +35,16 @@ const Client = () => {
       <div className="relative z-10 pt-32 lg:pt-56 px-4 lg:pl-[32vh] flex flex-col justify-center">
         <h5 className="mb-4 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">C L I E N T S</h5>
         <AnimatedText
-  className="text-[clamp(5vh,6vw,9vh)] 
+  className="text-[clamp(2.5rem,6vw,9vh)] 
              font-[font9] 
              cursor-expand 
              mb-12 
              lg:mb-20 
              tracking-tight 
-             w-[98%]
+             w-full 
              lg:w-[80%] 
              font-semibold 
-             leading-[clamp(9.5vw,8vw,4.1vw)] 
+             leading-[clamp(3.5rem,8vw,4.1vw)] 
              break-words 
              hyphens-auto"
 >

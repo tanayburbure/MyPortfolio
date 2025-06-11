@@ -41,10 +41,10 @@ const Client = () => {
              mb-12 
              lg:mb-20 
              tracking-tight 
-             w-[98%]
+             w-full 
              lg:w-[80%] 
              font-semibold 
-             leading-[clamp(9.5vw,8vw,4.1vw)] 
+             leading-[clamp(3.5rem,8vw,4.1vw)] 
              break-words 
              hyphens-auto"
 >

@@ -13,7 +13,7 @@ function About() {
              font-[font9] 
              tracking-tight 
              sm:tracking-normal 
-             w-[98%] 
+             w-[95%] 
              sm:w-[85%] 
              md:w-[80%] 
              lg:w-[80%] 
