@@ -53,7 +53,7 @@ function Motto() {
             ? 'center'
             : `calc(250% + ${offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
+          backgroundSize: isMobile ? '250%' : 'cover', // This gives natural zoom
           backgroundAttachment: isMobile ? 'scroll' : 'fixed',
         }}
       />

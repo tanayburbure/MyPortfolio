@@ -5,16 +5,14 @@ function Motto() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      const mobile = window.innerWidth < 640;
-      setIsMobile(mobile);
-      if (mobile) setOffsetY(0);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
     };
 
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
+    checkMobile(); // Initial check
+    window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -40,21 +38,17 @@ function Motto() {
   }, [isMobile]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen">
       {/* Background image */}
       <div
-        className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
+        className="absolute inset-0 bg-fixed"
         style={{
-          height: '100%',
           backgroundImage: "url('./images/sukuna4.jpg')",
           backgroundRepeat: 'no-repeat',
           opacity: 0.7,
-          backgroundPositionY: isMobile
-            ? 'center'
-            : `calc(250% + ${offsetY}px)`,
+          backgroundPositionY: `calc(250% + ${isMobile ? 0 : offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
-          backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+          backgroundSize: isMobile ? '430%' : 'cover',
         }}
       />
 

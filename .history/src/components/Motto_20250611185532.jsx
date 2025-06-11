@@ -8,7 +8,7 @@ function Motto() {
     const checkIfMobile = () => {
       const mobile = window.innerWidth < 640;
       setIsMobile(mobile);
-      if (mobile) setOffsetY(0);
+      if (mobile) setOffsetY(0); // Reset scroll value on mobile
     };
 
     checkIfMobile();
@@ -45,15 +45,14 @@ function Motto() {
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
-          height: '100%',
           backgroundImage: "url('./images/sukuna4.jpg')",
           backgroundRepeat: 'no-repeat',
           opacity: 0.7,
           backgroundPositionY: isMobile
-            ? 'center'
+            ? '250%'
             : `calc(250% + ${offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
+          backgroundSize: isMobile ? '430%' : 'cover',
           backgroundAttachment: isMobile ? 'scroll' : 'fixed',
         }}
       />

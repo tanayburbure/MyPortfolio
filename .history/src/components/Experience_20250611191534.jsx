@@ -65,7 +65,7 @@ function Experience() {
       />
 
       {/* Foreground content */}
-      <div className="relative h-full z-10 flex flex-col mt-12 pt-40 sm:pt-52 md:pt-60 lg:pt-40 px-[5vw] sm:px-[10vw] md:pl-[15vh] lg:pl-[31vh]">
+      <div className="relative h-full z-10 flex flex-col mt-12 pt-40 sm:pt-52 md:pt-60 lg:pt-48 px-[5vw] sm:px-[10vw] md:pl-[15vh] lg:pl-[31vh]">
         <h5 className="mb-6 sm:mb-8 lg:mb-12 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           E X P E R I E N C E
         </h5>

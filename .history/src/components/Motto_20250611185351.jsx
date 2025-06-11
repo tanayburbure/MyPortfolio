@@ -8,7 +8,7 @@ function Motto() {
     const checkIfMobile = () => {
       const mobile = window.innerWidth < 640;
       setIsMobile(mobile);
-      if (mobile) setOffsetY(0);
+      if (mobile) setOffsetY(0); // Ensure offsetY stays 0 on mobile
     };
 
     checkIfMobile();
@@ -18,7 +18,7 @@ function Motto() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile) return; // Don't add scroll listener on mobile
 
     let animationFrameId;
 
@@ -40,21 +40,17 @@ function Motto() {
   }, [isMobile]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen">
       {/* Background image */}
       <div
-        className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
+        className="absolute inset-0 bg-fixed"
         style={{
-          height: '100%',
           backgroundImage: "url('./images/sukuna4.jpg')",
           backgroundRepeat: 'no-repeat',
           opacity: 0.7,
-          backgroundPositionY: isMobile
-            ? 'center'
-            : `calc(250% + ${offsetY}px)`,
+          backgroundPositionY: `calc(250% + ${offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
-          backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+          backgroundSize: isMobile ? '430%' : 'cover',
         }}
       />
 

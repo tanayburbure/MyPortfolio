@@ -4,7 +4,7 @@ import MagneticWrapper from './MagneticWrapper';
 
 function Github() {
     return (
-        <div className='h-[45vh] lg:h-[60vh] flex flex-col items-center justify-start pt-16 lg:pt-36'>
+        <div className='h-[50vh] lg:h-[60vh] flex flex-col items-center justify-start pt-16 lg:pt-36'>
             <h2 className='text-5xl text-center lg:text-[7vh] font-semibold tracking-normal mb-6 lg:mb-4 font-[font9]'>
                 EXPLORE MORE PROJECT's
             </h2>

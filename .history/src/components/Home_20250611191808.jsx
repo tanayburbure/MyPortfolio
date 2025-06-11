@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-function Motto() {
+function Home() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const checkIfMobile = () => {
-      const mobile = window.innerWidth < 640;
+      const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) setOffsetY(0);
     };
@@ -41,39 +41,44 @@ function Motto() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background image */}
+      {/* Background Image */}
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
-          height: '100%',
-          backgroundImage: "url('./images/sukuna4.jpg')",
+          backgroundImage: "url('./images/new.jpg')",
           backgroundRepeat: 'no-repeat',
-          opacity: 0.7,
+          opacity: 0.4,
+          backgroundPositionX: 'center',
           backgroundPositionY: isMobile
             ? 'center'
-            : `calc(250% + ${offsetY}px)`,
-          backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
+            : `calc(110% + ${offsetY}px)`,
+          backgroundSize: isMobile ? '250%' : 'cover',
           backgroundAttachment: isMobile ? 'scroll' : 'fixed',
         }}
       />
 
-      {/* Foreground content */}
-      <div className="relative h-full z-10 flex flex-col items-center justify-center">
-        <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
-          M Y &nbsp; M O T T O
-        </h5>
+      {/* Main Content */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center lg:px-4 pr-1 text-center">
+        {/* Name */}
+        <h3 className="font-[font4] mt-[-4vh] font-bold tracking-tight lg:mb-4 text-sm sm:text-base md:text-lg">
+          T A N A Y &nbsp;&nbsp; B U R B U R E
+        </h3>
 
-        <h2 className="font-light pr-2 tracking-tighter text-[10.2vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand w-full sm:w-[100%] md:w-[70%] lg:w-[60%] leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]">
-          GOOD DESIGN IS&nbsp;HONEST
-        </h2>
+        {/* Main Heading */}
+        <h1 className="font-[font13] cursor-expand leading-[7.3vh] font-normal tracking-tight text-[8vh] mt-8 lg:text-[9vw] md:text-[12vh]">
+          STILL{isMobile ? <br /> : ' '}
+          <span className="text-[#EB5939] text-[7.8vh] lg:text-[9vw]">
+            DEBUGGING
+          </span>
+        </h1>
 
-        <h4 className="mt-3 sm:mt-6 font-[font9] text-sm sm:text-base md:text-lg">
-          Dieter Rams
-        </h4>
+        {/* Subtitle */}
+        <h3 className="font-[font9] font-semibold tracking-tight mt-2 lg:mt-4 text-[3.5vh] sm:text-[4.5vh] md:text-[5.5vh] lg:text-[4vw]">
+          SINCE 2023
+        </h3>
       </div>
     </div>
   );
 }
 
-export default Motto;
+export default Home;

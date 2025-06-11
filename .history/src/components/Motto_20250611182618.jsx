@@ -5,25 +5,17 @@ function Motto() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      const mobile = window.innerWidth < 640;
-      setIsMobile(mobile);
-      if (mobile) setOffsetY(0);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
     };
 
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) return;
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     let animationFrameId;
 
     const handleScroll = () => {
-      if (animationFrameId) return;
+      if (animationFrameId || isMobile) return;
 
       animationFrameId = requestAnimationFrame(() => {
         setOffsetY(window.scrollY * 0.03);
@@ -34,31 +26,28 @@ function Motto() {
     window.addEventListener('scroll', handleScroll);
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       window.removeEventListener('scroll', handleScroll);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {/* Background image */}
+    <div className="relative w-full h-screen">
+      {/* Background image with opacity */}
       <div
-        className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
+        className="absolute inset-0 bg-fixed"
         style={{
-          height: '100%',
           backgroundImage: "url('./images/sukuna4.jpg')",
-          backgroundRepeat: 'no-repeat',
+          backgroundRepeat: "no-repeat",
           opacity: 0.7,
-          backgroundPositionY: isMobile
-            ? 'center'
-            : `calc(250% + ${offsetY}px)`,
-          backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
-          backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+          backgroundPositionY: isMobile ? '100%' : `calc(250% + ${offsetY}px)`,
+          backgroundPositionX: isMobile ? '50%' : undefined,
+          backgroundSize: isMobile ? '430%' : 'cover',
         }}
       />
 
-      {/* Foreground content */}
+      {/* Content container with full opacity */}
       <div className="relative h-full z-10 flex flex-col items-center justify-center">
         <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           M Y &nbsp; M O T T O

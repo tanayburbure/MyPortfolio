@@ -45,7 +45,7 @@ function Motto() {
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
-          height: '100%',
+          height: '100vh',
           backgroundImage: "url('./images/sukuna4.jpg')",
           backgroundRepeat: 'no-repeat',
           opacity: 0.7,
@@ -53,7 +53,7 @@ function Motto() {
             ? 'center'
             : `calc(250% + ${offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
+          backgroundSize: isMobile ? '100% 100%' : 'cover',
           backgroundAttachment: isMobile ? 'scroll' : 'fixed',
         }}
       />
