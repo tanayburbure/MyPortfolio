@@ -15,9 +15,9 @@ function Motto() {
     const handleScroll = () => {
       if (requestId) return;
       requestId = requestAnimationFrame(() => {
-        // Your original parallax factors
-        const parallaxFactor = isMobile ? 0.001 : 0.03;
-        setOffsetY(window.scrollY * parallaxFactor);
+        // Different scroll directions for mobile/desktop
+        const scrollValue = isMobile ? window.scrollY : -window.scrollY;
+        setOffsetY(scrollValue * (isMobile ? 0.001 : 0.03));
         requestId = null;
       });
     };
@@ -29,24 +29,21 @@ function Motto() {
   }, [isMobile]);
 
   return (
-    <div className="relative w-full h-screen">
-      {/* Background image - only mobile sizing changed */}
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background with direction-specific parallax */}
       <div
-        className="absolute inset-0 bg-fixed bg-no-repeat"
+        className="absolute inset-0 bg-fixed bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('./images/sukuna4.jpg')",
           opacity: 0.6,
-          // Your original positioning formulas
-          backgroundPositionX: isMobile ? '50%' : 'center',
-          backgroundPositionY: isMobile
-            ? `calc(100% + ${offsetY}px)`  // Your mobile formula
-            : `calc(230% + ${offsetY}px)`, // Your original desktop formula
-          // Only change: backgroundSize for mobile
-          backgroundSize: isMobile ? 'auto 130%' : 'cover'
+          backgroundSize: isMobile ? 'auto 200%' : 'cover',
+          backgroundPositionY: `calc(50% + ${offsetY}px)`,
+          willChange: 'background-position',
+          transition: 'background-position 0.3s linear'
         }}
       />
       
-      {/* Your original content container */}
+      {/* Content container */}
       <div className="relative h-full z-10 flex flex-col items-center justify-center">
         <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           M Y &nbsp; M O T T O
