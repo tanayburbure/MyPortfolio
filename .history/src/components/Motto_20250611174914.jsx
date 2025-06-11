@@ -2,48 +2,55 @@ import React, { useEffect, useState } from 'react';
 
 function Motto() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Initialize with current width
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
-    let requestId;
+    let animationFrameId;
+
     const handleScroll = () => {
-      if (requestId) return;
-      requestId = requestAnimationFrame(() => {
-        setOffsetY(window.scrollY * (isMobile ? 0.001 : 0.03));
-        requestId = null;
+      if (animationFrameId) return;
+
+      animationFrameId = requestAnimationFrame(() => {
+        // Reduce parallax intensity on mobile while keeping original 0.03 for desktop
+        const parallaxFactor = isMobile ? 0.001 : 0.03;
+        setOffsetY(window.scrollY * parallaxFactor);
+        animationFrameId = null;
       });
     };
+
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (requestId) cancelAnimationFrame(requestId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {/* Background with stabilized animation */}
+    <div className="relative w-full h-screen">
+      {/* Background image with opacity */}
       <div
-        className="absolute inset-0 bg-fixed bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('./images/sukuna4.jpg')",
-          opacity: 0.6,
-          backgroundSize: isMobile ? 'auto 130%' : 'cover',
-          backgroundPositionY: isMobile 
-            ? `calc(50% + ${offsetY * 0.5}px)`
-            : `calc(50% + ${offsetY}px)`,
-          willChange: 'background-position',
-          transition: 'background-position 0.1s linear'
-        }}
-      />
+  className="absolute inset-0 bg-fixed"
+  style={{
+    backgroundImage: "url('./images/sukuna4.jpg')",
+    backgroundRepeat: "no-repeat",
+    opacity: 0.6,
+    backgroundPosition: isMobile ? '50% center' : 'center center',
+    backgroundSize: 'cover', // Always use cover for consistent sizing
+    transform: `translateY(${isMobile ? offsetY * 0.5 : offsetY}px)` // Smoother parallax
+  }}
+/>
       
-      {/* Content container */}
+      {/* Content container with full opacity */}
       <div className="relative h-full z-10 flex flex-col items-center justify-center">
         <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           M Y &nbsp; M O T T O

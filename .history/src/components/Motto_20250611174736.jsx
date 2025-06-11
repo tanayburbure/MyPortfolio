@@ -15,7 +15,7 @@ function Motto() {
     const handleScroll = () => {
       if (requestId) return;
       requestId = requestAnimationFrame(() => {
-        setOffsetY(window.scrollY * (isMobile ? 0.001 : 0.03));
+        setOffsetY(window.scrollY * (isMobile ? 0.002 : 0.02)); // Reduced factors
         requestId = null;
       });
     };
@@ -28,22 +28,19 @@ function Motto() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background with stabilized animation */}
+      {/* Background with stabilized sizing */}
       <div
-        className="absolute inset-0 bg-fixed bg-center bg-no-repeat"
+        className="fixed inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('./images/sukuna4.jpg')",
           opacity: 0.6,
-          backgroundSize: isMobile ? 'auto 130%' : 'cover',
-          backgroundPositionY: isMobile 
-            ? `calc(50% + ${offsetY * 0.5}px)`
-            : `calc(50% + ${offsetY}px)`,
-          willChange: 'background-position',
-          transition: 'background-position 0.1s linear'
+          transform: `translateY(${offsetY}px)`,
+          willChange: 'transform',
+          backgroundSize: isMobile ? 'auto 120%' : 'cover'
         }}
       />
       
-      {/* Content container */}
+      {/* Content container with full opacity */}
       <div className="relative h-full z-10 flex flex-col items-center justify-center">
         <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           M Y &nbsp; M O T T O
