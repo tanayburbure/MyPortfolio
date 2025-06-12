@@ -41,7 +41,7 @@ const Client = () => {
              mb-12 
              lg:mb-20 
              tracking-tight 
-             w-full
+             w-[98%]
              lg:w-[80%] 
              font-semibold 
              leading-[clamp(4.2vh,8vw,4.1vw)] 

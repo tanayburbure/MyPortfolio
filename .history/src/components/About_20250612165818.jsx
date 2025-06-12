@@ -9,16 +9,16 @@ function About() {
       </h5>
 
       <AnimatedText
-  className="text-[clamp(4.2vh,5vw,8.5vh)] 
+  className="text-[clamp(4.5vh,5vw,8.5vh)] 
              font-[font9] 
              tracking-tight 
              sm:tracking-normal 
-             w-full
+             w-[98%] 
              sm:w-[85%] 
              md:w-[80%] 
              lg:w-[80%] 
              font-semibold 
-             leading-[clamp(4.2vh,7vw,9vh)] 
+             leading-[clamp(4.5vh,7vw,9vh)] 
              break-words 
              hyphens-auto 
              cursor-expand"

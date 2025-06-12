@@ -65,7 +65,7 @@ function Experience() {
       />
 
       {/* Foreground content */}
-      <div className='h-screen pl-[5vw] md:pl-[15vh] lg:pl-[31vh] flex flex-col justify-center mt-4 lg:mt-4'>
+      <div className='h-screen pl-[5vw] md:pl-[15vh] lg:pl-[31vh] flex flex-col justify-center mt-5 lg:mt-4'>
         <h5 className="mb-8 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">E X P E R I E N C E</h5>
 
         <AnimatedText

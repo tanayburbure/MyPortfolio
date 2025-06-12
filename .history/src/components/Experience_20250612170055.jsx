@@ -65,11 +65,11 @@ function Experience() {
       />
 
       {/* Foreground content */}
-      <div className='h-screen pl-[5vw] md:pl-[15vh] lg:pl-[31vh] flex flex-col justify-center mt-4 lg:mt-4'>
+      <div className='h-screen pl-[5vw] md:pl-[15vh] lg:pl-[31vh] flex flex-col justify-center mt-8 lg:mt-4'>
         <h5 className="mb-8 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">E X P E R I E N C E</h5>
 
         <AnimatedText
-  className="text-[clamp(4.2vh,5vw,8.5vh)] 
+  className="text-[clamp(5vh,5vw,8.5vh)] 
              font-[font9] 
              tracking-tight 
              sm:tracking-normal 
@@ -78,7 +78,7 @@ function Experience() {
              md:w-[80%] 
              lg:w-[80%] 
              font-semibold 
-             leading-[clamp(4.2vh,7vw,9vh)] 
+             leading-[clamp(4.5vh,7vw,9vh)] 
              break-words 
              hyphens-auto 
              cursor-expand"
