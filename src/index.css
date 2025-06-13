@@ -43,41 +43,11 @@ img, video, canvas {
 
     
 @font-face {
-    font-family: 'font1';
-    src: url('/fonts/Ague.otf') format('opentype');
-}@font-face {
-    font-family: 'font2';
-    src: url('/fonts/Bonceitrial.otf') format('opentype');
-}@font-face {
-    font-family: 'font3';
-    src: url('/fonts/Eclassio.otf') format('opentype');
-}@font-face {
-    font-family: 'font4';
-    src: url('/fonts/Fontspring.otf') format('opentype');
-}@font-face {
-    font-family: 'font5';
-    src: url('/fonts/GesturaDisplay.otf') format('opentype');
-}@font-face {
-    font-family: 'font6';
-    src: url('/fonts/Gromife.otf') format('opentype');
-}@font-face {
-    font-family: 'font7';
-    src: url('/fonts/rafgins.otf') format('opentype');
-}@font-face {
     font-family: 'font8';
     src: url('/fonts/Quicking.otf') format('opentype');
 }@font-face {
     font-family: 'font9';
     src: url('/fonts/Aeternum.ttf') format('truetype');
-}@font-face {
-    font-family: 'font10';
-    src: url('/fonts/hookan.ttf') format('truetype');
-}@font-face {
-    font-family: 'font11';
-    src: url('/fonts/Nt-Ginder.ttf') format('truetype');
-}@font-face {
-    font-family: 'font12';
-    src: url('/fonts/Helvetica.ttf') format('truetype');
 }
 @font-face {
     font-family: 'font13';

@@ -1,9 +1,9 @@
 "use client";
 
 import React from 'react';
-import Earth from '../components/Earth';
-import AnimatedText from '../components/AnimatedText';
-import ProjectShowcase from '../components/ProjectShowcase';
+import Earth from '../utility/Earth';
+import AnimatedText from '../utility/AnimatedText';
+import ProjectShowcase from '../utility/ProjectShowcase';
 
 const projects = [
   {

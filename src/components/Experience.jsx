@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AnimatedText from '../components/AnimatedText';
+import AnimatedText from '../utility/AnimatedText';
 
 function Experience() {
   const [offsetY, setOffsetY] = useState(0);
@@ -54,7 +54,6 @@ function Experience() {
             ? 'center'
             : `calc(100% + ${offsetY}px)`,
 
-          // 👇 You can change this percentage to control horizontal position on mobile (e.g. '80%', '50%', '20%')
           backgroundPositionX: isMobile ? '69%' : 'right',
 
           backgroundSize: isMobile ? '430%' : 'cover',

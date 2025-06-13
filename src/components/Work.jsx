@@ -1,5 +1,5 @@
 "use client";
-import ProjectShowcase from "../components/ProjectShowcase"; // adjust path if needed
+import ProjectShowcase from "../utility/ProjectShowcase"; // adjust path if needed
 
 const projects = [
   {

@@ -3,7 +3,7 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io";
-import MagneticWrapper from './MagneticWrapper';
+import MagneticWrapper from '../utility/MagneticWrapper';
 
 function Navigation() {
   const audioRef = useRef(null);
@@ -99,13 +99,13 @@ function Navigation() {
 
   return (
     <div className='relative z-50 fixed h-full w-screen'>
-      <audio ref={audioRef} src="/music/lovestory.mp3" loop />
+      <audio ref={audioRef} src="/music/so it begins.mp3" loop />
 
       <div className='left absolute top-6 left-6 md:top-12 md:left-12'>
         <MagneticWrapper>
           <img
-            className='w-8 md:w-12'
-            src={`${import.meta.env.BASE_URL}images/logo.svg`}
+            className='w-12 md:w-16 mix-blend-difference'
+            src={`${import.meta.env.BASE_URL}images/lobo.png`}
             alt="Logo"
           />
         </MagneticWrapper>

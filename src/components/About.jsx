@@ -1,5 +1,5 @@
 import React from 'react';
-import AnimatedText from './AnimatedText'; // adjust the path if needed
+import AnimatedText from '../utility/AnimatedText'; // adjust the path if needed
 
 function About() {
   return (

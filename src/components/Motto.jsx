@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function Motto() {
   const [offsetY, setOffsetY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const h2Ref = useRef(null);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -13,7 +19,6 @@ function Motto() {
 
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
-
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
@@ -21,10 +26,8 @@ function Motto() {
     if (isMobile) return;
 
     let animationFrameId;
-
     const handleScroll = () => {
       if (animationFrameId) return;
-
       animationFrameId = requestAnimationFrame(() => {
         setOffsetY(window.scrollY * 0.03);
         animationFrameId = null;
@@ -32,12 +35,32 @@ function Motto() {
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
+
+  useEffect(() => {
+    if (!h2Ref.current) return;
+
+    const split = new SplitText(h2Ref.current, { type: 'chars' });
+
+    gsap.from(split.chars, {
+      scrollTrigger: {
+        trigger: h2Ref.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      y: 80,
+      opacity: 0,
+      ease: 'power4.out',
+      stagger: 0.04,
+      duration: 1,
+    });
+
+    return () => split.revert();
+  }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -53,7 +76,7 @@ function Motto() {
             ? 'center'
             : `calc(250% + ${offsetY}px)`,
           backgroundPositionX: '50%',
-          backgroundSize: isMobile ? '400%' : 'cover', // This gives natural zoom
+          backgroundSize: isMobile ? '400%' : 'cover',
           backgroundAttachment: isMobile ? 'scroll' : 'fixed',
         }}
       />
@@ -64,9 +87,15 @@ function Motto() {
           M Y &nbsp; M O T T O
         </h5>
 
-        <h2 className="font-light pr-2 tracking-tighter text-[10.2vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand w-full sm:w-[100%] md:w-[70%] lg:w-[60%] leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]">
-          GOOD DESIGN IS&nbsp;HONEST
-        </h2>
+        {/* Animated H2 */}
+        <div className="overflow-hidden w-full sm:w-[100%] md:w-[70%] lg:w-[60%]">
+          <h2
+            ref={h2Ref}
+            className="font-light pr-2 tracking-tighter text-[10.2vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]"
+          >
+            GOOD DESIGN IS&nbsp;HONEST
+          </h2>
+        </div>
 
         <h4 className="mt-3 sm:mt-6 font-[font9] text-sm sm:text-base md:text-lg">
           Dieter Rams

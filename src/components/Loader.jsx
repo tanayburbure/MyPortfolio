@@ -108,8 +108,8 @@ function Loader({ setLoading }) {
 
       {/* Logo */}
       <img
-        className={`h-[12vw] sm:h-16 absolute ${hideTimer ? 'moveUp' : ''}`}
-        src={`${import.meta.env.BASE_URL}images/logo.gif`}
+        className={`h-[15vw] lg:h-[11vh] mix-blend-difference sm:h-16 absolute ${hideTimer ? 'moveUp' : ''}`}
+        src={`${import.meta.env.BASE_URL}images/lobo.png`}
         alt="Animated Logo"
         onError={(e) => { e.target.src = 'fallback-image.png'; }}
       />

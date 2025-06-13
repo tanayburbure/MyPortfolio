@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdCallMade } from "react-icons/md";
-import MagneticWrapper from './MagneticWrapper';
+import MagneticWrapper from '../utility/MagneticWrapper';
 
 function Github() {
     return (

@@ -1,5 +1,5 @@
 import React from "react";
-import HoverAnimation from "./HoverAnimation";
+import HoverAnimation from "../utility/HoverAnimation";
 import 'remixicon/fonts/remixicon.css'
 
 function Footer() {
