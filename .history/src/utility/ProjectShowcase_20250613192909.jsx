@@ -1,34 +1,33 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 
 export default function ProjectShowcase({ projects }) {
     const [selectedProject, setSelectedProject] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
+    // Ensures accurate width detection even before paint
+    useLayoutEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
         };
-        
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
     return (
         <div className="relative w-full h-[90vh] text-[#2F2D29] overflow-hidden font-[font13]">
             <Titles 
                 projects={projects} 
-                setSelectedProject={isMobile ? () => {} : setSelectedProject} 
+                setSelectedProject={setSelectedProject} 
                 isMobile={isMobile} 
             />
-            {!isMobile && (
-                <Descriptions 
-                    projects={projects} 
-                    selectedProject={selectedProject} 
-                />
-            )}
+            <Descriptions 
+                projects={projects} 
+                selectedProject={selectedProject} 
+                isMobile={isMobile}
+            />
         </div>
     );
 }
@@ -59,16 +58,32 @@ function Title({ project, index, setSelectedProject, isMobile }) {
     const clipProgress = useTransform(scrollYProgress, [0, 1], [100, 0]);
     const clipPathStyle = useMotionTemplate`inset(0 ${clipProgress}% 0 0)`;
 
+    const handleTouchStart = () => {
+        if (window.innerWidth < 768) setSelectedProject(index);
+    };
+
+    const handleTouchEnd = () => {
+        if (window.innerWidth < 768) setTimeout(() => setSelectedProject(null), 1000);
+    };
+
+    const handleMouseEnter = () => {
+        if (window.innerWidth >= 768) setSelectedProject(index);
+    };
+
+    const handleMouseLeave = () => {
+        if (window.innerWidth >= 768) setSelectedProject(null);
+    };
+
     return (
         <div className="relative">
             <div className="border-b border-[#b7ab9820] no-mask" ref={containerRef}>
                 <div className="inline-block md:pl-[1vw] lg:pl-[15.4%] relative">
                     <p
                         className="text-[#2F2D29] font-thin text-[6vh] sm:text-[5vw] md:text-[6vw] lg:text-[8.2vw] leading-[6.5vh] sm:leading-[5.5vw] md:leading-[5.8vw] lg:leading-[6.5vw] cursor-pointer"
-                        {...(!isMobile && {
-                            onMouseEnter: () => setSelectedProject(index),
-                            onMouseLeave: () => setSelectedProject(null)
-                        })}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
                     >
                         {project.title}
                     </p>
@@ -86,7 +101,7 @@ function Title({ project, index, setSelectedProject, isMobile }) {
     );
 }
 
-function Descriptions({ projects, selectedProject }) {
+function Descriptions({ projects, selectedProject, isMobile }) {
     return (
         <div className="absolute top-[-3vh] mt-[3.20vh] w-screen z-2 pointer-events-none">
             {projects.map((project, index) => (
@@ -97,9 +112,11 @@ function Descriptions({ projects, selectedProject }) {
                         clipPath: selectedProject === index ? "inset(0 0 0)" : "inset(50% 0 50%)",
                     }}
                 >
-                    <p className="text-[#010101] font-thin mb-1 sm:mb-2 md:mb-3 leading-[5vh] sm:leading-[4.5vw] md:leading-[5vw] lg:leading-[6.5vw] text-[5vw] sm:text-[4.5vw] md:text-[5vw] lg:text-[8.2vw] relative z-1">
-                        {project.title.substring(0, 8)}
-                    </p>
+                    {!isMobile && (
+                        <p className="text-[#010101] font-thin mb-1 sm:mb-2 md:mb-3 leading-[5vh] sm:leading-[4.5vw] md:leading-[5vw] lg:leading-[6.5vw] text-[5vw] sm:text-[4.5vw] md:text-[5vw] lg:text-[8.2vw] relative z-1">
+                            {project.title.substring(0, 8)}
+                        </p>
+                    )}
                     <p className="w-full pt-[1.6vh] sm:w-[45%] md:w-[42%] lg:w-[40%] text-[2.5vw] sm:text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] font-bold font-[font9] text-center sm:text-left">
                         {project.description}
                     </p>

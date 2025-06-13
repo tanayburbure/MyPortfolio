@@ -102,14 +102,14 @@ export default function Home() {
       />
 
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-4">
-        <h3 className="font-[font14] font-bold tracking-tight text-[3.3vw] sm:text-base md:text-lg mb-4">
+        <h3 className="font-[font14] font-bold tracking-tight text-sm sm:text-base md:text-lg mb-4">
           T A N A Y &nbsp;&nbsp; B U R B U R E
         </h3>
 
         <div className="overflow-hidden mb-1 w-full max-w-[95vw] sm:max-w-[90vw]">
           <h1
             ref={mainHeadingRef}
-            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[14vw] sm:text-[10vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw]  tracking-tight cursor-expand"
+            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[12vw] sm:text-[10vw] md:text-[12vw] lg:text-[9vw] leading-[6vw] tracking-tight cursor-expand"
           >
             STILL
             <br />

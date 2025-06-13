@@ -102,7 +102,7 @@ export default function Home() {
       />
 
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-4">
-        <h3 className="font-[font14] font-bold tracking-tight text-[3.3vw] sm:text-base md:text-lg mb-4">
+        <h3 className="font-[font14] font-bold tracking-tight text-[4vw] sm:text-base md:text-lg mb-4">
           T A N A Y &nbsp;&nbsp; B U R B U R E
         </h3>
 

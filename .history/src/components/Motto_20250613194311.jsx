@@ -88,22 +88,19 @@ function Motto() {
       />
 
       {/* Foreground content */}
-      <div className="relative h-full z-10 flex flex-col items-center justify-center">
-        <h5 className="mb-8 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
+      <div className="relative h-full z-10 flex flex-col items-center justify-center px-4">
+        <h5 className="mb-4 sm:mb-8 font-semibold font-sm font-[font14] tracking-widest text-xs sm:text-sm md:text-base">
           M Y &nbsp; M O T T O
         </h5>
 
         {/* Animated H2 */}
-        <div className="overflow-hidden w-full sm:w-[100%] md:w-[70%] lg:w-[60%]">
+        <div className="overflow-hidden w-full max-w-[90vw]">
           <h2
-  ref={h2Ref}
-  className="font-light pr-2 tracking-tighter text-[10vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]"
->
-  GOOD <br className="block md:hidden" /> 
-  DESIGN <br className="hidden md:block" /> 
-  IS <br className="block sm:hidden" /> 
-  HONEST
-</h2>
+            ref={h2Ref}
+            className="font-light tracking-tighter text-[8vw] sm:text-[7vw] md:text-[6.5vw] lg:text-[6vw] text-center text-[#EC4E39] font-[font13] cursor-expand leading-[1.1]"
+          >
+            GOOD DESIGN <br className="hidden sm:block" /> IS HONEST
+          </h2>
         </div>
 
         <h4 className="mt-3 sm:mt-6 font-[font9] text-sm sm:text-base md:text-lg">

@@ -96,14 +96,11 @@ function Motto() {
         {/* Animated H2 */}
         <div className="overflow-hidden w-full sm:w-[100%] md:w-[70%] lg:w-[60%]">
           <h2
-  ref={h2Ref}
-  className="font-light pr-2 tracking-tighter text-[10vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]"
->
-  GOOD <br className="block md:hidden" /> 
-  DESIGN <br className="hidden md:block" /> 
-  IS <br className="block sm:hidden" /> 
-  HONEST
-</h2>
+            ref={h2Ref}
+            className="font-light pr-2 tracking-tighter text-[10.2vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]"
+          >
+            GOOD <br className="block md-hidden" /> DESIGN <br /> IS HONEST
+          </h2>
         </div>
 
         <h4 className="mt-3 sm:mt-6 font-[font9] text-sm sm:text-base md:text-lg">
