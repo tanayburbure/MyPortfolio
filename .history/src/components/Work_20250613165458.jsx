@@ -14,7 +14,7 @@ const projects = [
   },
   {
     title: "DESIGN",
-    description: "Nothing decorative — everything designed.",
+    description: "Future of UFC Sports Ecosystem despite not being a sports fan.",
     speed: 0.6,
   },
   {

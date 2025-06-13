@@ -9,12 +9,12 @@ const projects = [
   },
   {
     title: "VISUAL",
-    description: "Visual that looks good and works better.",
+    description: "Visual design that looks good and works better.",
     speed: 0.55,
   },
   {
     title: "DESIGN",
-    description: "Nothing decorative — everything designed.",
+    description: "Future of UFC Sports Ecosystem despite not being a sports fan.",
     speed: 0.6,
   },
   {
@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: "PRODUCT",
-    description: "Solving user problems, not just shipping features.",
+    description: "Designed a 1M+ users product utilizing my best experience: sleeping.",
     speed: 0.8,
   },
 ];

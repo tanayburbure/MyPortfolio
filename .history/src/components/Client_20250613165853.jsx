@@ -13,12 +13,12 @@ const projects = [
   },
   {
     title: "INNOVATHON",
-    description: "Made the whole website… and then the event got cancelled 😢.",
+    description: "Developed scalable systems for fast-growing startups.",
     speed: 0.55,
   },
   {
     title: "LOADING...",
-    description: "Crafting the New World projects — and more to come…",
+    description: "Crafted compelling visual narratives for global campaigns.",
     speed: 0.6,
   },
 ];

@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: "LOADING...",
-    description: "Crafting the New World projects — and more to come…",
+    description: "Crafted compelling visual narratives for global campaigns.",
     speed: 0.6,
   },
 ];
