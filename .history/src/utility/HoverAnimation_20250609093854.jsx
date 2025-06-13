@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
@@ -10,21 +9,24 @@ export default function HoverAnimation({ children, className = "" }) {
   const timeoutRef = useRef(null);
 
   const handleHoverStart = () => {
-    setIsHovered(true);
+    setIsHovered(true); // background animation immediate
+
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-      setTextBlack(true);
+      setTextBlack(true); // text color change delayed
     }, 50);
   };
 
   const handleHoverEnd = () => {
-    setIsHovered(false);
+    setIsHovered(false); // background animation immediate
+
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-      setTextBlack(false);
+      setTextBlack(false); // text color reset delayed
     }, 100);
   };
 
+  // Clear timeout on unmount
   useEffect(() => {
     return () => clearTimeout(timeoutRef.current);
   }, []);
@@ -38,9 +40,8 @@ export default function HoverAnimation({ children, className = "" }) {
       )}
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
-      style={{ position: "relative" }} // Ensures Framer Motion animation calculates offset properly
     >
-      {/* Animated background */}
+      {/* Animated background from center */}
       <motion.span
         initial={{ scaleY: 0 }}
         animate={{ scaleY: isHovered ? 1 : 0 }}
@@ -49,7 +50,7 @@ export default function HoverAnimation({ children, className = "" }) {
         style={{ transformOrigin: "center" }}
       />
 
-      {/* Text layer */}
+      {/* Text */}
       <span className="relative z-10">{children}</span>
     </motion.span>
   );

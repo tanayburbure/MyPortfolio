@@ -6,7 +6,7 @@ gsap.registerPlugin(SplitText);
 
 export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const mainHeadingRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -46,29 +46,30 @@ export default function Home() {
   useEffect(() => {
     if (!mainHeadingRef.current || !subtitleRef.current) return;
 
-    let splitMain, splitSub;
+    const splitMain = new SplitText(mainHeadingRef.current, {
+      type: 'chars',
+    });
+    const splitSub = new SplitText(subtitleRef.current, {
+      type: 'chars',
+    });
 
-    document.fonts.ready.then(() => {
-      splitMain = new SplitText(mainHeadingRef.current, { type: 'chars' });
-      splitSub = new SplitText(subtitleRef.current, { type: 'chars' });
-
-      gsap.from([...splitMain.chars, ...splitSub.chars], {
-        y: 80,
-        opacity: 0,
-        ease: 'power4.out',
-        stagger: 0.04,
-        duration: 1,
-      });
+    gsap.from([...splitMain.chars, ...splitSub.chars], {
+      y: 80,
+      opacity: 0,
+      ease: 'power4.out',
+      stagger: 0.04,
+      duration: 1,
     });
 
     return () => {
-      if (splitMain) splitMain.revert();
-      if (splitSub) splitSub.revert();
+      splitMain.revert();
+      splitSub.revert();
     };
   }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
+      {/* Inject SplitText fix styles */}
       <style>{`
         .split-text-fix span {
           display: inline-block;
@@ -78,6 +79,7 @@ export default function Home() {
         }
       `}</style>
 
+      {/* Background */}
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
@@ -93,11 +95,14 @@ export default function Home() {
         }}
       />
 
+      {/* Foreground content */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center">
+        {/* Name */}
         <h3 className="font-[font14] font-bold tracking-tight text-sm sm:text-base md:text-lg mb-4">
           T A N A Y &nbsp;&nbsp; B U R B U R E
         </h3>
 
+        {/* Animated Main Heading */}
         <div className="overflow-hidden mb-1 w-full max-w-[95vw] sm:max-w-[90vw]">
           <h1
             ref={mainHeadingRef}

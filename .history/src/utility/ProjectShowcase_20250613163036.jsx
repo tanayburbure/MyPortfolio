@@ -10,6 +10,7 @@ export default function ProjectShowcase({ projects }) {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
         };
+        
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
@@ -57,6 +58,7 @@ function Title({ project, index, setSelectedProject, isMobile }) {
     const clipProgress = useTransform(scrollYProgress, [0, 1], [100, 0]);
     const clipPathStyle = useMotionTemplate`inset(0 ${clipProgress}% 0 0)`;
 
+    // Mobile touch handlers
     const handleTouchStart = () => {
         if (isMobile) setSelectedProject(index);
     };
@@ -67,7 +69,10 @@ function Title({ project, index, setSelectedProject, isMobile }) {
 
     return (
         <div className="relative">
-            <div className="border-b border-[#b7ab9820] no-mask" ref={containerRef}>
+            <div
+                className="border-b border-[#b7ab9820] no-mask"
+                ref={containerRef}
+            >
                 <div className="inline-block md:pl-[1vw] lg:pl-[15.4%] relative">
                     <p
                         className="text-[#2F2D29] font-thin text-[6vh] sm:text-[5vw] md:text-[6vw] lg:text-[8.2vw] leading-[6.5vh] sm:leading-[5.5vw] md:leading-[5.8vw] lg:leading-[6.5vw] cursor-pointer"
@@ -82,8 +87,6 @@ function Title({ project, index, setSelectedProject, isMobile }) {
                     <motion.p
                         style={{ clipPath: clipPathStyle }}
                         className="absolute top-0 sm:left-[12vw] md:left-[1vw] lg:left-[15.3vw] text-[#b7ab98] font-thin text-[6vh] sm:text-[5.5vw] md:text-[6vw] lg:text-[8.2vw] leading-[6.5vh] sm:leading-[5.5vw] md:leading-[5.8vw] lg:leading-[6.5vw] pointer-events-none"
-                        // ✅ Framer Motion warning fix
-                        initial={false}
                     >
                         {project.title}
                     </motion.p>

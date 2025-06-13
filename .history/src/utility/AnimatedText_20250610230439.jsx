@@ -9,14 +9,10 @@ const AnimatedText = ({ children, className = '' }) => {
   const textRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !textRef.current) return;
+    if (typeof window !== 'undefined' && textRef.current) {
+      const element = textRef.current;
 
-    const element = textRef.current;
-    let split;
-
-    // Wait for fonts to be fully loaded before applying SplitText
-    document.fonts.ready.then(() => {
-      split = new SplitText(element, {
+      const split = new SplitText(element, {
         type: 'lines',
         linesClass: 'line',
       });
@@ -29,18 +25,18 @@ const AnimatedText = ({ children, className = '' }) => {
           ease: 'none',
           scrollTrigger: {
             trigger: line,
-            start: '0% center',
+            start: '0% center', 
             end: 'bottom center',
             scrub: 1,
           },
         });
       });
-    });
 
-    return () => {
-      if (split) split.revert();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+      return () => {
+        split.revert();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    }
   }, []);
 
   return (

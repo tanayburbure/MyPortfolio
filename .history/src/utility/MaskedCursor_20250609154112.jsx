@@ -33,14 +33,15 @@ const useIsLargeScreen = () => {
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handler);
     } else {
-      mediaQuery.addListener(handler); // Fallback for Safari
+      // For Safari and older browsers
+      mediaQuery.addListener(handler);
     }
 
     return () => {
       if (mediaQuery.removeEventListener) {
         mediaQuery.removeEventListener('change', handler);
       } else {
-        mediaQuery.removeListener(handler); // Fallback for Safari
+        mediaQuery.removeListener(handler);
       }
     };
   }, []);
@@ -76,20 +77,17 @@ export default function MaskedCursor() {
     return () => window.removeEventListener('mouseover', handleMouseOver);
   }, []);
 
+  // Disable cursor on small screens
   if (!isLargeScreen) return null;
 
   return (
     <motion.div
       className="pointer-events-none fixed inset-0 z-[9999]"
-      initial={{
-        WebkitMaskSize: '40px', // start from valid animatable value
-      }}
       style={{
         WebkitMaskImage: "url('images/mask.svg')",
         WebkitMaskRepeat: 'no-repeat',
         backgroundColor: '#ec4e39',
         mixBlendMode: 'difference',
-        WebkitMaskSize: '40px', // must match `initial` to avoid 'auto'
       }}
       animate={{
         WebkitMaskPosition: `${x - cursorSize / 2}px ${y - cursorSize / 2}px`,

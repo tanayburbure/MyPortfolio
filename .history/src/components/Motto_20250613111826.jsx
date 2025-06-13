@@ -44,28 +44,22 @@ function Motto() {
   useEffect(() => {
     if (!h2Ref.current) return;
 
-    let split;
+    const split = new SplitText(h2Ref.current, { type: 'chars' });
 
-    document.fonts.ready.then(() => {
-      split = new SplitText(h2Ref.current, { type: 'chars' });
-
-      gsap.from(split.chars, {
-        scrollTrigger: {
-          trigger: h2Ref.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-        y: 80,
-        opacity: 0,
-        ease: 'power4.out',
-        stagger: 0.04,
-        duration: 1,
-      });
+    gsap.from(split.chars, {
+      scrollTrigger: {
+        trigger: h2Ref.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      y: 80,
+      opacity: 0,
+      ease: 'power4.out',
+      stagger: 0.04,
+      duration: 1,
     });
 
-    return () => {
-      if (split) split.revert();
-    };
+    return () => split.revert();
   }, []);
 
   return (
@@ -99,7 +93,7 @@ function Motto() {
             ref={h2Ref}
             className="font-light pr-2 tracking-tighter text-[10.2vh] text-center sm:text-[12vh] md:text-[14vh] lg:text-[17vh] text-[#EC4E39] font-[font13] cursor-expand leading-[9.4vh] sm:leading-[8vw] md:leading-[7.5vw] lg:leading-[7.2vw]"
           >
-            GOOD <br className="block md-hidden" /> DESIGN <br /> IS HONEST
+            GOOD DESIGN IS&nbsp;HONEST
           </h2>
         </div>
 
