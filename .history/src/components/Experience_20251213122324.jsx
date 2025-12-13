@@ -86,7 +86,7 @@ function Experience() {
   <span className="text-[#EB5939] font-[font8] tracking-wide sm:tracking-wider">
     two years
   </span>{' '}
-  experience building and maintaining full-stack applications , contributing to real-world projects.
+  experience building and maintaining full-stack applications, from crafting interfaces to implementing secure and efficient server logic.
 </AnimatedText>
 
       </div>

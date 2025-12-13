@@ -54,7 +54,7 @@ const AnimatedText = ({ children, className = '' }) => {
           bg-[length:200%_100%] bg-right bg-clip-text [-webkit-background-clip:text]
           text-[5vh] sm:text-[6vh] md:text-[7vh] lg:text-[8vh]
           leading-[6vw] sm:leading-[5vw] md:leading-[4.5vw] lg:leading-[4.2vw]
-          w-[95%] sm:w-[85%] md:w-[80%] lg:w-[72%]
+          w-[95%] sm:w-[85%] md:w-[80%] lg:w-[77%]
         `}
       >
         {children}
@@ -63,7 +63,7 @@ const AnimatedText = ({ children, className = '' }) => {
       <style>{`
         .line {
           display: block;
-          background: linear-gradient(to right, #B7AB98 50%, #212121 50%);
+          background: linear-gradient(to right, #B7AB98 50%, #212121 47%);
           background-size: 200% 100%;
           background-position-x: 100%;
           color: transparent;

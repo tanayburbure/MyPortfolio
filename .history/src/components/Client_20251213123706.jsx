@@ -21,16 +21,6 @@ const projects = [
     description : "Chat in real time, without leaving a digital trace.",
     speed : 0.6
   },
-  {
-    title: "SECONDBRAIN",
-    description : "Designed a tool to efficiently manage personal links, notes, and resources.",
-    speed : 0.65
-  },
-  {
-    title: "LOADING...",
-    description: "Crafting the New World projects — and more to come…",
-    speed: 0.6,
-  },
 ];
 
 export default function Client() {
@@ -42,7 +32,7 @@ export default function Client() {
       </div>
 
       {/* Foreground content (z-10) */}
-      <div className="relative z-10 pt-32 lg:pt-32 px-4 lg:pl-[32vh] flex flex-col justify-center">
+      <div className="relative z-10 pt-32 lg:pt-40 px-4 lg:pl-[32vh] flex flex-col justify-center">
         <h5 className="mb-4 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">
           C L I E N T S
         </h5>

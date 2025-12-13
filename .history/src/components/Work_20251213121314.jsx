@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: "BACKEND",
-    description: "The silent engine behind every click, Invisible work, visible impact.",
+    description: "Solving user problems, not just shipping features.",
     speed: 0.8,
   },
 ];

@@ -48,18 +48,18 @@ export default function Home({ isLoaded }) {
     };
   }, [isMobile]);
 
-  /* ---------------- TEXT ANIMATION (RESTORED) ---------------- */
+  /* ---------------- TEXT ANIMATION (FIXED) ---------------- */
   useEffect(() => {
     if (!isLoaded) return;
     if (!mainHeadingRef.current || !subtitleRef.current) return;
     if (animationPlayedRef.current) return;
 
-    let splitMain;
-    let splitSub;
+    animationPlayedRef.current = true;
+
     let ctx;
+    let splitMain, splitSub;
 
     const startAnimation = async () => {
-      // 🔑 This is critical – restores original behavior
       await document.fonts.ready;
 
       ctx = gsap.context(() => {
@@ -72,11 +72,9 @@ export default function Home({ isLoaded }) {
           ease: 'power4.out',
           stagger: 0.04,
           duration: 1,
-          delay: 0.6,
+          delay: 0.2, // allows layout + cursor to settle
         });
       });
-
-      animationPlayedRef.current = true;
     };
 
     startAnimation();
@@ -107,7 +105,6 @@ export default function Home({ isLoaded }) {
         }
       `}</style>
 
-      {/* Background */}
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
@@ -123,7 +120,6 @@ export default function Home({ isLoaded }) {
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-4">
         <h3 className="font-[font14] font-black tracking-tight text-[3.3vw] sm:text-base md:text-lg mb-4">
           T A N A Y &nbsp;&nbsp; B U R B U R E
@@ -132,7 +128,7 @@ export default function Home({ isLoaded }) {
         <div className="overflow-hidden mb-1 w-full max-w-[95vw] sm:max-w-[90vw]">
           <h1
             ref={mainHeadingRef}
-            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[16vw] sm:text-[11vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw] tracking-tight cursor-expand"
+            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[12.5vw] sm:text-[10vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw] tracking-tight cursor-expand"
           >
             STILL
             <br />

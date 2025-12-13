@@ -4,17 +4,13 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-export default function Home({ isLoaded }) {
+export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  );
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   const mainHeadingRef = useRef(null);
   const subtitleRef = useRef(null);
-  const animationPlayedRef = useRef(false);
 
-  /* ---------------- MOBILE CHECK ---------------- */
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
@@ -27,66 +23,49 @@ export default function Home({ isLoaded }) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  /* ---------------- PARALLAX ---------------- */
   useEffect(() => {
     if (isMobile) return;
 
-    let rafId = null;
+    let animationFrameId;
 
     const handleScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
+      if (animationFrameId) return;
+      animationFrameId = requestAnimationFrame(() => {
         setOffsetY(window.scrollY * 0.03);
-        rafId = null;
+        animationFrameId = null;
       });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (rafId) cancelAnimationFrame(rafId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
 
-  /* ---------------- TEXT ANIMATION (RESTORED) ---------------- */
   useEffect(() => {
-    if (!isLoaded) return;
     if (!mainHeadingRef.current || !subtitleRef.current) return;
-    if (animationPlayedRef.current) return;
 
-    let splitMain;
-    let splitSub;
-    let ctx;
+    let splitMain, splitSub;
 
-    const startAnimation = async () => {
-      // 🔑 This is critical – restores original behavior
-      await document.fonts.ready;
+    document.fonts.ready.then(() => {
+      splitMain = new SplitText(mainHeadingRef.current, { type: 'chars' });
+      splitSub = new SplitText(subtitleRef.current, { type: 'chars' });
 
-      ctx = gsap.context(() => {
-        splitMain = new SplitText(mainHeadingRef.current, { type: 'chars' });
-        splitSub = new SplitText(subtitleRef.current, { type: 'chars' });
-
-        gsap.from([...splitMain.chars, ...splitSub.chars], {
-          y: 80,
-          opacity: 0,
-          ease: 'power4.out',
-          stagger: 0.04,
-          duration: 1,
-          delay: 0.6,
-        });
+      gsap.from([...splitMain.chars, ...splitSub.chars], {
+        y: 80,
+        opacity: 0,
+        ease: 'power4.out',
+        stagger: 0.04,
+        duration: 1,
       });
-
-      animationPlayedRef.current = true;
-    };
-
-    startAnimation();
+    });
 
     return () => {
-      if (ctx) ctx.revert();
       if (splitMain) splitMain.revert();
       if (splitSub) splitSub.revert();
     };
-  }, [isLoaded]);
+  }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -107,7 +86,6 @@ export default function Home({ isLoaded }) {
         }
       `}</style>
 
-      {/* Background */}
       <div
         className={`absolute inset-0 ${!isMobile ? 'bg-fixed' : ''}`}
         style={{
@@ -123,16 +101,15 @@ export default function Home({ isLoaded }) {
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-4">
-        <h3 className="font-[font14] font-black tracking-tight text-[3.3vw] sm:text-base md:text-lg mb-4">
+        <h3 className="font-[font14] font-dark tracking-tight text-[3.3vw] sm:text-base md:text-lg mb-4">
           T A N A Y &nbsp;&nbsp; B U R B U R E
         </h3>
 
         <div className="overflow-hidden mb-1 w-full max-w-[95vw] sm:max-w-[90vw]">
           <h1
             ref={mainHeadingRef}
-            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[16vw] sm:text-[11vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw] tracking-tight cursor-expand"
+            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[12.5vw] sm:text-[10vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw]  tracking-tight cursor-expand"
           >
             STILL
             <br />

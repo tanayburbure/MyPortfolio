@@ -25,8 +25,10 @@ function App() {
             <Navigation />
           </div>
 
-          <MaskedCursor />
           <Home isLoaded={!loading} />
+
+          {/* Cursor AFTER hero animation starts */}
+          <MaskedCursor />
 
           <About />
           <Work />

@@ -42,7 +42,7 @@ export default function Client() {
       </div>
 
       {/* Foreground content (z-10) */}
-      <div className="relative z-10 pt-32 lg:pt-32 px-4 lg:pl-[32vh] flex flex-col justify-center">
+      <div className="relative z-10 pt-32 lg:pt-36 px-4 lg:pl-[32vh] flex flex-col justify-center">
         <h5 className="mb-4 lg:mb-12 font-semibold shadow-lg text-xs lg:text-[2.2vh] tracking-widest">
           C L I E N T S
         </h5>

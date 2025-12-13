@@ -18,16 +18,13 @@ function App() {
   return (
     <div className="relative">
       {loading && <Loader setLoading={setLoading} />}
-
       {!loading && (
         <LenisProvider>
           <div className="fixed z-50">
             <Navigation />
           </div>
-
-          <MaskedCursor />
+          {!loading && <MaskedCursor />}
           <Home isLoaded={!loading} />
-
           <About />
           <Work />
           <Experience />

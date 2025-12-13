@@ -132,7 +132,7 @@ export default function Home({ isLoaded }) {
         <div className="overflow-hidden mb-1 w-full max-w-[95vw] sm:max-w-[90vw]">
           <h1
             ref={mainHeadingRef}
-            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[16vw] sm:text-[11vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw] tracking-tight cursor-expand"
+            className="split-text-fix main-heading font-[font13] text-[#EB5939] text-[12.5vw] sm:text-[11vw] md:text-[12vw] lg:text-[9vw] leading-[13vw] lg:leading-[8vw] tracking-tight cursor-expand"
           >
             STILL
             <br />
