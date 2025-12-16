@@ -1,41 +1,44 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 /* ---------------- MOUSE POSITION ---------------- */
 const useMousePosition = () => {
-  const [mouse, setMouse] = useState(null);
+  const [mousePosition, setMousePosition] = useState(null);
 
   useEffect(() => {
-    const handleMove = (e) => {
-      setMouse({ x: e.clientX, y: e.clientY });
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', updateMousePosition);
+
+    return () => window.removeEventListener('mousemove', updateMousePosition);
   }, []);
 
-  return mouse;
+  return mousePosition;
 };
 
 /* ---------------- SCREEN SIZE ---------------- */
 const useIsLargeScreen = () => {
-  const [isLarge, setIsLarge] = useState(true);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
-    setIsLarge(mq.matches);
+    setIsLargeScreen(mq.matches);
 
-    const handler = (e) => setIsLarge(e.matches);
-    mq.addEventListener?.('change', handler) || mq.addListener(handler);
+    const handler = (e) => setIsLargeScreen(e.matches);
+    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler);
 
     return () => {
-      mq.removeEventListener?.('change', handler) || mq.removeListener(handler);
+      mq.removeEventListener
+        ? mq.removeEventListener('change', handler)
+        : mq.removeListener(handler);
     };
   }, []);
 
-  return isLarge;
+  return isLargeScreen;
 };
 
 export default function MaskedCursor() {
@@ -44,16 +47,15 @@ export default function MaskedCursor() {
 
   const [isMasked, setIsMasked] = useState(true);
   const [cursorSize, setCursorSize] = useState(40);
-  const [hasMoved, setHasMoved] = useState(false);
 
-  /* ---------- Detect first mouse move ---------- */
+  const hasMoved = useRef(false);
+
   useEffect(() => {
-    if (mouse && !hasMoved) {
-      setHasMoved(true);
+    if (mouse && !hasMoved.current) {
+      hasMoved.current = true;
     }
-  }, [mouse, hasMoved]);
+  }, [mouse]);
 
-  /* ---------- Hover logic ---------- */
   useEffect(() => {
     const handleMouseOver = (e) => {
       const target = e.target;
@@ -77,31 +79,26 @@ export default function MaskedCursor() {
   return (
     <motion.div
       className="pointer-events-none fixed inset-0 z-[9999]"
+      initial={false} // ⛔ disable first animation
       style={{
         WebkitMaskImage: "url('images/mask.svg')",
         WebkitMaskRepeat: 'no-repeat',
         backgroundColor: '#ec4e39',
         mixBlendMode: 'difference',
       }}
-      /* ⬇️ Start invisible & tiny AT THE CURSOR */
-      initial={{
-        opacity: 0,
-        WebkitMaskSize: '0px',
-        WebkitMaskPosition: `${x}px ${y}px`,
-      }}
       animate={{
-        opacity: hasMoved && isMasked ? 1 : 0,
+        opacity: isMasked ? 1 : 0,
         WebkitMaskPosition: `${x - cursorSize / 2}px ${y - cursorSize / 2}px`,
-        WebkitMaskSize: hasMoved ? `${cursorSize}px` : '0px',
+        WebkitMaskSize: `${cursorSize}px`,
       }}
       transition={{
-        opacity: { duration: 0.35, ease: 'easeOut' },
-        WebkitMaskSize: { duration: 0.45, ease: 'easeOut' },
-        WebkitMaskPosition: {
-          type: 'tween',
-          ease: 'backOut',
-          duration: 0.5,
-        },
+        WebkitMaskPosition: hasMoved.current
+          ? { type: 'tween', ease: 'backOut', duration: 0.5 }
+          : { duration: 0 }, // 👈 no animation on first move
+        WebkitMaskSize: hasMoved.current
+          ? { type: 'tween', duration: 0.3 }
+          : { duration: 0 },
+        opacity: { duration: 0.2 },
       }}
     />
   );

@@ -14,7 +14,7 @@ function Navigation() {
   const [activeSection, setActiveSection] = useState("");
   const [isMobile, setIsMobile] = useState(false);
 
-  const MAX_VOLUME = 0.06; //
+  const MAX_VOLUME = 0.07; //
   const FADE_STEP = 0.01;
   const FADE_INTERVAL = 80;
 

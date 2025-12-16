@@ -5,37 +5,52 @@ import { motion } from 'framer-motion';
 
 /* ---------------- MOUSE POSITION ---------------- */
 const useMousePosition = () => {
-  const [mouse, setMouse] = useState(null);
+  const [mousePosition, setMousePosition] = useState(null);
 
   useEffect(() => {
-    const handleMove = (e) => {
-      setMouse({ x: e.clientX, y: e.clientY });
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
-
-  return mouse;
-};
-
-/* ---------------- SCREEN SIZE ---------------- */
-const useIsLargeScreen = () => {
-  const [isLarge, setIsLarge] = useState(true);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    setIsLarge(mq.matches);
-
-    const handler = (e) => setIsLarge(e.matches);
-    mq.addEventListener?.('change', handler) || mq.addListener(handler);
+    window.addEventListener('mousemove', updateMousePosition, { once: true });
+    window.addEventListener('mousemove', updateMousePosition);
 
     return () => {
-      mq.removeEventListener?.('change', handler) || mq.removeListener(handler);
+      window.removeEventListener('mousemove', updateMousePosition);
     };
   }, []);
 
-  return isLarge;
+  return mousePosition;
+};
+
+/* ---------------- SCREEN SIZE CHECK ---------------- */
+const useIsLargeScreen = () => {
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    setIsLargeScreen(mediaQuery.matches);
+
+    const handler = (e) => setIsLargeScreen(e.matches);
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handler);
+    } else {
+      mediaQuery.addListener(handler);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handler);
+      } else {
+        mediaQuery.removeListener(handler);
+      }
+    };
+  }, []);
+
+  return isLargeScreen;
 };
 
 export default function MaskedCursor() {
@@ -44,16 +59,7 @@ export default function MaskedCursor() {
 
   const [isMasked, setIsMasked] = useState(true);
   const [cursorSize, setCursorSize] = useState(40);
-  const [hasMoved, setHasMoved] = useState(false);
 
-  /* ---------- Detect first mouse move ---------- */
-  useEffect(() => {
-    if (mouse && !hasMoved) {
-      setHasMoved(true);
-    }
-  }, [mouse, hasMoved]);
-
-  /* ---------- Hover logic ---------- */
   useEffect(() => {
     const handleMouseOver = (e) => {
       const target = e.target;
@@ -70,6 +76,7 @@ export default function MaskedCursor() {
     return () => window.removeEventListener('mouseover', handleMouseOver);
   }, []);
 
+  // ⛔ Prevent rendering until mouse position exists
   if (!isLargeScreen || !mouse) return null;
 
   const { x, y } = mouse;
@@ -77,31 +84,26 @@ export default function MaskedCursor() {
   return (
     <motion.div
       className="pointer-events-none fixed inset-0 z-[9999]"
+      initial={{
+        opacity: 0,
+        WebkitMaskSize: '40px',
+      }}
       style={{
         WebkitMaskImage: "url('images/mask.svg')",
         WebkitMaskRepeat: 'no-repeat',
         backgroundColor: '#ec4e39',
         mixBlendMode: 'difference',
-      }}
-      /* ⬇️ Start invisible & tiny AT THE CURSOR */
-      initial={{
-        opacity: 0,
-        WebkitMaskSize: '0px',
-        WebkitMaskPosition: `${x}px ${y}px`,
+        WebkitMaskSize: '40px',
       }}
       animate={{
-        opacity: hasMoved && isMasked ? 1 : 0,
+        opacity: isMasked ? 1 : 0,
         WebkitMaskPosition: `${x - cursorSize / 2}px ${y - cursorSize / 2}px`,
-        WebkitMaskSize: hasMoved ? `${cursorSize}px` : '0px',
+        WebkitMaskSize: `${cursorSize}px`,
       }}
       transition={{
-        opacity: { duration: 0.35, ease: 'easeOut' },
-        WebkitMaskSize: { duration: 0.45, ease: 'easeOut' },
-        WebkitMaskPosition: {
-          type: 'tween',
-          ease: 'backOut',
-          duration: 0.5,
-        },
+        WebkitMaskPosition: { type: 'tween', ease: 'backOut', duration: 0.5 },
+        WebkitMaskSize: { type: 'tween', duration: 0.3 },
+        opacity: { duration: 0.2, ease: 'easeOut' },
       }}
     />
   );

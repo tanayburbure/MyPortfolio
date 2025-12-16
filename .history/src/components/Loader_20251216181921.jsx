@@ -147,7 +147,7 @@ function Loader({ setLoading }) {
       </svg>
 
       <img
-        className={`h-[15vw] lg:h-[11vh] a-auto mix-blend-difference sm:h-16 absolute ${
+        className={`h-[15vw] lg:h-[11vh] mix-blend-difference sm:h-16 absolute ${
           hideTimer ? 'moveUp' : ''
         }`}
         src={`${import.meta.env.BASE_URL}images/lobo.avif`}

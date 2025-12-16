@@ -17,29 +17,29 @@ function App() {
 
   return (
     <div className="relative">
-      {loading && <Loader setLoading={setLoading} />}
+  {loading && <Loader setLoading={setLoading} />}
 
-      {!loading && (
-        <LenisProvider>
-          <div className="relative">
-            <div className="fixed z-50">
-              <Navigation />
-            </div>
+  {!loading && (
+    <LenisProvider>
+      <div className="relative">
+        <div className="fixed z-50">
+          <Navigation />
+        </div>
 
-            <MaskedCursor />
-            <Home isLoaded={!loading} />
+        <MaskedCursor />
+        <Home isLoaded={!loading} />
 
-            <About />
-            <Work />
-            <Experience />
-            <Client />
-            <Github />
-            <Motto />
-            <Footer />
-          </div>
-        </LenisProvider>
-      )}
-    </div>
+        <About />
+        <Work />
+        <Experience />
+        <Client />
+        <Github />
+        <Motto />
+        <Footer />
+      </div>
+    </LenisProvider>
+  )}
+</div>
 
   );
 }

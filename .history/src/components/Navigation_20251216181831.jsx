@@ -7,16 +7,10 @@ import MagneticWrapper from '../utility/MagneticWrapper';
 
 function Navigation() {
   const audioRef = useRef(null);
-  const fadeIntervalRef = useRef(null);
-
   const [isMusicPlaying, setIsMusicPlaying] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isMobile, setIsMobile] = useState(false);
-
-  const MAX_VOLUME = 0.06; //
-  const FADE_STEP = 0.01;
-  const FADE_INTERVAL = 80;
 
   const scrollTargets = {
     About: isLargeScreen ? 0 : 0,
@@ -24,65 +18,21 @@ function Navigation() {
     Contact: isLargeScreen ? 658 : 614
   };
 
-  /* ---------------- AUDIO HELPERS ---------------- */
-
-  const fadeToVolume = (targetVolume) => {
-    if (!audioRef.current) return;
-
-    clearInterval(fadeIntervalRef.current);
-
-    fadeIntervalRef.current = setInterval(() => {
-      const audio = audioRef.current;
-      if (!audio) return;
-
-      const diff = targetVolume - audio.volume;
-
-      if (Math.abs(diff) <= FADE_STEP) {
-        audio.volume = targetVolume;
-        clearInterval(fadeIntervalRef.current);
-        return;
-      }
-
-      audio.volume += diff > 0 ? FADE_STEP : -FADE_STEP;
-    }, FADE_INTERVAL);
-  };
-
-  /* ---------------- INITIAL LOAD ---------------- */
-
   useEffect(() => {
     const savedState = localStorage.getItem('isMusicPlaying');
-
-    if (audioRef.current) {
-      audioRef.current.volume = 0; // always start silent
-    }
-
     if (savedState !== null) {
       setIsMusicPlaying(savedState === 'true');
     } else {
-      audioRef.current?.play().catch(() => {});
+      audioRef.current?.play().catch(() => { });
     }
   }, []);
 
-  /* ---------------- PLAY / PAUSE ---------------- */
-
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isMusicPlaying) {
-      audio.play().catch(() => {});
-      fadeToVolume(MAX_VOLUME);
-    } else {
-      fadeToVolume(0);
-      setTimeout(() => {
-        audio.pause();
-      }, 400);
+    if (audioRef.current) {
+      isMusicPlaying ? audioRef.current.play().catch(() => { }) : audioRef.current.pause();
     }
-
     localStorage.setItem('isMusicPlaying', isMusicPlaying.toString());
   }, [isMusicPlaying]);
-
-  /* ---------------- SCREEN SIZE ---------------- */
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,16 +48,13 @@ function Navigation() {
     setIsMusicPlaying(prev => !prev);
   };
 
-  /* ---------------- SCROLL ---------------- */
-
   const smoothScroll = (target) => {
     const startPosition = window.pageYOffset;
     const distance = target - startPosition;
     const duration = 1000;
     let startTime = null;
 
-    const easeInOutQuad = (t) =>
-      t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
     const animation = (currentTime) => {
       if (startTime === null) startTime = currentTime;
@@ -127,8 +74,7 @@ function Navigation() {
     smoothScroll(target);
   };
 
-  /* ---------------- ACTIVE SECTION ---------------- */
-
+  // Track active section
   useEffect(() => {
     const onScroll = () => {
       const scrollY = window.scrollY;
@@ -153,12 +99,7 @@ function Navigation() {
 
   return (
     <div className='relative z-50 fixed h-full w-screen'>
-      <audio
-        ref={audioRef}
-        src="/music/smoke.mp3"
-        loop
-        preload="none"
-      />
+      <audio ref={audioRef} src="/music/so it begins.mp3" loop />
 
       <div className='left absolute top-6 left-6 md:top-12 md:left-12'>
         <MagneticWrapper>
@@ -174,11 +115,8 @@ function Navigation() {
         {["About", "Work", "Contact"].map((item) => (
           <button
             key={item}
-            className={`nav-button no-mask transition-colors duration-300 ${
-              activeSection === item
-                ? "text-[#EB5939] font-semibold"
-                : "text-[#958C7D] font-normal"
-            }`}
+            className={`nav-button no-mask transition-colors duration-300 ${activeSection === item ? "text-[#EB5939] font-semibold" : "text-[#958C7D] font-normal"
+              }`}
             onClick={() => handleScroll(item)}
           >
             {item}

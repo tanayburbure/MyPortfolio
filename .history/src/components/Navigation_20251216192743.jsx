@@ -14,7 +14,7 @@ function Navigation() {
   const [activeSection, setActiveSection] = useState("");
   const [isMobile, setIsMobile] = useState(false);
 
-  const MAX_VOLUME = 0.06; //
+  const MAX_VOLUME = 0.10; //
   const FADE_STEP = 0.01;
   const FADE_INTERVAL = 80;
 
@@ -155,7 +155,7 @@ function Navigation() {
     <div className='relative z-50 fixed h-full w-screen'>
       <audio
         ref={audioRef}
-        src="/music/smoke.mp3"
+        src="/music/so it begins.mp3"
         loop
         preload="none"
       />
